@@ -40,7 +40,6 @@ const images = ["assets/yhC.png",
     "assets/ykC.png", "assets/yhC.png", "assets/ykC.png"]
 
 const pImgs = _.cloneDeep(images).slice(1);
-console.log(pImgs);
 </script>
 
 <style scoped>

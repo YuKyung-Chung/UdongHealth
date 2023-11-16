@@ -10,6 +10,7 @@
         </section>
         <aside class="col-3">
           <LoginForm />
+          <TheFavList/>
         </aside>
       </div>
     </main>
@@ -24,6 +25,7 @@
 import TheHeaderNav from "./components/common/TheHeaderNav.vue";
 import TheFooter from "./components/common/TheFooter.vue";
 import LoginForm from "./components/common/TheLoginForm.vue";
+import TheFavList from "./components/common/TheFavList.vue";
 </script>
 
 <style  scoped>
