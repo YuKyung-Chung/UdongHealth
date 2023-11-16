@@ -9,13 +9,13 @@ public class User {
 	private String favorites; 	//즐겨찾기
 	private Date regDate; 		//가입날짜
 	private Date loginDate; 	//로그인날짜
-	private boolean isRetired; 	//탈퇴여부
+	private String isRetired; 	//탈퇴여부
 	
 	//기본생성자
 	public User() {}
 	
 	public User(int userId, String name, String password, String favorites, Date regDate, Date loginDate,
-			boolean isRetired) {
+			String isRetired) {
 		this.userId = userId;
 		this.name = name;
 		this.password = password;
@@ -73,11 +73,11 @@ public class User {
 		this.loginDate = loginDate;
 	}
 
-	public boolean isRetired() {
+	public String isRetired() {
 		return isRetired;
 	}
 
-	public void setRetired(boolean isRetired) {
+	public void setRetired(String isRetired) {
 		this.isRetired = isRetired;
 	}
 
