@@ -7,7 +7,7 @@
 
 ex) 특정 파일 혹은 기능을 버그를 수정했을 때
 
-git commit -m "Fix: regist.vue"
+git commit -m "Fix: regist.vue - fix login"
 ```
 
 
