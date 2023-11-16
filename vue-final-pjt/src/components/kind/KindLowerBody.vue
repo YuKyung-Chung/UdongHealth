@@ -1,6 +1,6 @@
 <template>
     <div>
-
+        <h3>하체</h3>
     </div>
 </template>
 
@@ -8,6 +8,6 @@
 
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 
 </style>

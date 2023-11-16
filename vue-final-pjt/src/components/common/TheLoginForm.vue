@@ -1,8 +1,8 @@
 <template>
     <form class="col">
         <div class="row-auto">
-            <label for="staticEmail2">Email</label>
-            <input type="text" class="form-control" id="staticEmail2">
+            <label for="staticId1">Id</label>
+            <input type="text" class="form-control" id="staticId1" placeholder="id">
         </div>
         <div class="row-auto">
             <label for="inputPassword2">Password</label>
