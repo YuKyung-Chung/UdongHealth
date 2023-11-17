@@ -11,7 +11,7 @@ export const usePlaceStore = defineStore('place', () => {
             const response = await axios.get(URL);
             places.value = response.data;
         } catch (error) {
-            console.error(error);
+            console.log(error);
         }
     };
 
