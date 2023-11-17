@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ssafy.udong.model.dao.PlaceDao;
 import com.ssafy.udong.model.dto.Place;
+import com.ssafy.udong.model.dto.SearchCondition;
 
 @Service
 public class PlaceServiceImpl implements PlaceService{
@@ -51,6 +52,13 @@ public class PlaceServiceImpl implements PlaceService{
 		return placeDao.getPlace(placeId);
 	}
 
+	//검색 기능
+	@Override
+	public List<Place> search(SearchCondition condition) {
+		return placeDao.search(condition);
+	}
+	
+	
 	
 
 	
