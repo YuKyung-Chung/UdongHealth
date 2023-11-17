@@ -6,19 +6,19 @@
     <main class="container">
       <div class="row">
         <section class="col-9">
-          <RouterView />
+
+            <RouterView />
         </section>
         <aside class="col-3">
           <LoginForm />
-          <TheFavList/>
+          <TheFavList />
         </aside>
       </div>
     </main>
     <footer>
-      <TheFooter/>
+      <TheFooter />
     </footer>
   </div>
-
 </template>
 
 <script setup>
@@ -29,5 +29,4 @@ import TheFavList from "./components/common/TheFavList.vue";
 </script>
 
 <style  scoped>
-
 </style>
