@@ -39,10 +39,16 @@ public class PlaceServiceImpl implements PlaceService{
 		placeDao.insertPlace(place);	
 	}
 
-	//리스트 조회
+	//장소 전체 목록 조회
 	@Override
 	public List<Place> getPlaces() {
 		return placeDao.getPlaces();
+	}
+
+	//상세 장소 조회
+	@Override
+	public Place getPlace(int placeId) {
+		return placeDao.getPlace(placeId);
 	}
 
 	
