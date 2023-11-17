@@ -1,5 +1,7 @@
 package com.ssafy.udong.model.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,5 +38,14 @@ public class PlaceServiceImpl implements PlaceService{
 		
 		placeDao.insertPlace(place);	
 	}
+
+	//리스트 조회
+	@Override
+	public List<Place> getPlaces() {
+		return placeDao.getPlaces();
+	}
+
+	
+
 	
 }
