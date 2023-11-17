@@ -9,13 +9,14 @@
         <RouterLink to="/kind">Kind</RouterLink>
     </div>
     <div class="text-center">
-        <h1 class="mainTitle">우리 동네 헬스장</h1>
+        <h1 class="mainTitle">우리 동네 무료 헬스장</h1>
     </div>
 </template>
 
 <script setup>
 import { onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+
 
 const router = useRouter();
 
