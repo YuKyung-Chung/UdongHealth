@@ -1,8 +1,8 @@
 <template>
     <div>
-        <h1>헤이헤이</h1>
+        <h1>HOME</h1>
         <div id="map"></div>
-        <h2>{{ KAKAOMAP_API_KEY }}</h2>
+        <h2></h2>
     </div>
 </template>
 
