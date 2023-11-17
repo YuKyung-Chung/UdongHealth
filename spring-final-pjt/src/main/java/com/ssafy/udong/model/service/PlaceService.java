@@ -1,7 +1,9 @@
-package com.ssafy.udong.model.dao;
+package com.ssafy.udong.model.service;
 
 import com.ssafy.udong.model.dto.Place;
 
-public interface PlaceDao {
+public interface PlaceService {
+
 	void insertPlace(Place place);
+
 }
