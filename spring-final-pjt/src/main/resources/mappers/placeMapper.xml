@@ -24,10 +24,18 @@
 	</insert>
 	
 	
-	<!-- 리스트 조회 -->
+	<!-- 장소 목록 조회 -->
 	<select id="getPlaces" resultMap="placeMap">
 		SELECT *
 		FROM place
 	</select>
+	
+	<!-- 상세 장소 조회 -->
+	<select id="getPlace" parameterType="int" resultMap="placeMap">
+		SELECT *
+		FROM place
+		WHERE place_id = #{placeId}
+	</select>
+	
 	
 </mapper>

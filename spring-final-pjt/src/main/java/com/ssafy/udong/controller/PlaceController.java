@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ssafy.udong.model.dto.Place;
-import com.ssafy.udong.model.dto.Review;
 import com.ssafy.udong.model.service.PlaceService;
 
 @RestController
@@ -33,6 +32,7 @@ public class PlaceController {
 	@Value("${api-key}")
 	String APIKey;
 	
+	//장소 목록 전체 조회
 	@GetMapping("/place")
 	public ResponseEntity<?> getListFromApi() throws IOException {
 		//DB에서 기존 데이터 불러오기
@@ -42,6 +42,17 @@ public class PlaceController {
 			existingPlaces = callOpenApi();
 		}
 		return new ResponseEntity<>(existingPlaces, HttpStatus.OK);
+	}
+	
+	//상세 장소 조회
+	@GetMapping("/place/{placeId}")
+	public ResponseEntity<?> getDetail(@PathVariable int placeId){
+		Place place = placeService.getPlace(placeId);
+		
+		if(place == null) {
+			return new ResponseEntity<Place>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<Place>(place, HttpStatus.OK);
 	}
 	
 	//API 호출하여 DB에 저장하는 메서드
