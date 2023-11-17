@@ -23,7 +23,7 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/AboutView.vue')
     },
-    { 
+    {
       path: '/search',
       name: 'search',
       component: SearchView
@@ -34,21 +34,21 @@ const router = createRouter({
       name: 'kind',
       component: KindView,
       children: [{
-        path: '',
-        component : KindAll
+        path: '/kind',
+        component: KindAll
       },
       {
-        path: 'upperBody',
+        path: '/kind/upperBody',
         component: KindUpperBody
 
       }, {
-        path: 'lowerBody',
+        path: '/kind/lowerBody',
         component: KindLowerBody
       }, {
-        path: 'core',
+        path: '/kind/core',
         component: KindCore
       }],
-      
+
 
     }
   ]

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2>모든 것을 보여준다.</h2>
+        <h2>전체 보여주기</h2>
     </div>
 </template>
 
