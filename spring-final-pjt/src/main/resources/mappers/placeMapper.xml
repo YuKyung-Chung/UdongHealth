@@ -23,4 +23,11 @@
 		VALUES (#{placeName}, #{eqYear}, #{address},#{addressGu},#{addressDong}, #{addressDetail}, #{eqKind}, #{eqBroken}, #{eqFix}, #{latitude}, #{longitude}, #{dept}, #{deptPhone}, #{updateDate})
 	</insert>
 	
+	
+	<!-- 리스트 조회 -->
+	<select id="getPlaces" resultMap="placeMap">
+		SELECT *
+		FROM place
+	</select>
+	
 </mapper>
