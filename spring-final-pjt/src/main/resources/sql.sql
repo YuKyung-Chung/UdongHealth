@@ -25,6 +25,7 @@ CREATE TABLE if not exists `place` (
 CREATE TABLE if not exists `user` (
 	user_id INT AUTO_INCREMENT,
     name VARCHAR(20) NOT NULL,
+    email VARCHAR(50) NOT NULL,
     password VARCHAR(20) NOT NULL,
     favorites VARCHAR(20),
     reg_date DATE,
@@ -52,18 +53,22 @@ CREATE TABLE if not exists `equipment` (
     PRIMARY KEY(eq_name)
 ) ENGINE=InnoDB DEFAULT CHARACTER SET = utf8mb4;
 
-INSERT INTO user(name, password, favorites, reg_date, login_date, is_retired)
-VALUES('ssafy','1234',null,null,null,'N');
 
--- This will insert a file in a BLOB column.
--- INSERT INTO stu_information (stu_photograph) VALUES(LOAD_FILE('/image_path/image_fileName.png'));
+INSERT INTO place (place_name, eq_year, address, address_gu, address_dong, address_detail, eq_kind, eq_broken, eq_fix, latitude, longitude, dept, dept_phone, update_date)
+ 		VALUES ('갈매기근린공원', null, '서울특별시 강남구 압구정동 480(갈매기근린공원)', substring_index(substring_index(address,' ',2),' ',-1), substring_index(substring_index(address,' ',3),' ',-1), substring_index(address,' ',-1), '농구대, 공중걷기, 평행봉, 역기올리기', '없음', '12회 이상', 37.531496, 127.030123, '공원녹지과', '02-3423-6244', '2022-08-08' );
 
---  INSERT INTO place (place_name, eq_year, address, address_gu, address_dong, address_detail, eq_kind, eq_broken, eq_fix, latitude, longitude, dept, dept_phone, update_date)
--- 		VALUES ('갈매기근린공원', null, '서울특별시 강남구 압구정동 480(갈매기근린공원)', substring_index(substring_index(address,' ',2),' ',-1), substring_index(substring_index(address,' ',3),' ',-1), substring_index(address,' ',-1), '농구대, 공중걷기, 평행봉, 역기올리기', '없음', '12회 이상', 37.531496, 127.030123, '공원녹지과', '02-3423-6244', '2022-08-08' );
+INSERT INTO user(name, email, password, favorites, reg_date, login_date, is_retired)
+VALUES('정유경','ssafy1@gmail.com','1234',null,null,null,'N'),
+('조용환','ssafy2@gmail.com','1234',null,null,null,'N');
+
+INSERT INTO review(user_id, place_id, writer, content)
+VALUES(1,1,'정유경','여기 완전 추천이에용'),
+(2,1,'조용환','운동하기 아주 좋네요');
+
 
 commit;
 
 SELECT * FROM place;
--- SELECT * FROM user;
--- SELECT * FROM review;
--- SELECT * FROM equipment;
+SELECT * FROM user;
+SELECT * FROM review;
+-- SELECT * FROM equipment; 
