@@ -18,8 +18,8 @@ const place = ref({});
 const placeId = route.params.placeId;
 let map = null;
 const initMap = function () {
-    console.log(place.value)
-    let myCenter = new kakao.maps.LatLng(place.value.longitude, place.value.latitude); //공원위치
+    console.log(place.value.위도)
+    let myCenter = new kakao.maps.LatLng(place.value.위도, place.value.경도); //공원위치
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
             const lt = position.coords.latitude;
