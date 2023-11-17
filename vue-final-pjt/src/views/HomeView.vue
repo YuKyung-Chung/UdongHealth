@@ -17,7 +17,7 @@ const initMap = function () {
   let myCenter = new kakao.maps.LatLng(37.501286, 127.0396029); //카카오본사
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((position) => {
-      const lt = position.coords.latitude;
+      const lat = position.coords.latitude;
       const lon = position.coords.longitude;
       myCenter = new kakao.maps.LatLng(lat, lon);
       new kakao.maps.Marker({

@@ -41,6 +41,7 @@ const goDetail = (placeId) => {
 
 
 
+
 onMounted(async () => {
     await store.getPlaces();
     if (store.places.length >=20) {
