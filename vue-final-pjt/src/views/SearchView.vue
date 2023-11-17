@@ -8,13 +8,24 @@
         <div class="row-auto">
             <button type="submit" class="btn btn-primary mb-3" @click.stop.prevent>검색</button>
         </div>
-
+        
     </form>
+    
+    <!-- <div v-for="place in store.places" :key="place.placeId">
+    <h4>{{ place }}</h4>
+    </div> -->
 </template>
 
 <script setup>
+import { onMounted} from 'vue'
+import { usePlaceStore } from '../stores/place';
 
+onMounted(() => {
+    const store = usePlaceStore();
+    store.getPlaces();
+    console.log(store.places);
 
+})
 
 </script>
 
