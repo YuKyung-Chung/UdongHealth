@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ssafy.udong.model.dto.Place;
+import com.ssafy.udong.model.dto.SearchCondition;
 import com.ssafy.udong.model.service.PlaceService;
 
 @RestController
@@ -54,6 +55,18 @@ public class PlaceController {
 		}
 		return new ResponseEntity<Place>(place, HttpStatus.OK);
 	}
+	
+	//검색기능
+	@GetMapping("/place/search")
+	public ResponseEntity<?> search(SearchCondition condition){
+		List<Place> list = placeService.search(condition);
+		
+		if(list == null || list.size() == 0) {
+			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<List<Place>>(list, HttpStatus.OK);
+	}
+	
 	
 	//API 호출하여 DB에 저장하는 메서드
     private List<Place> callOpenApi() throws IOException {

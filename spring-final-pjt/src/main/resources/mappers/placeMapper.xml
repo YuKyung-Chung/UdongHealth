@@ -37,5 +37,18 @@
 		WHERE place_id = #{placeId}
 	</select>
 	
+	<!-- 검색기능  -->
+	<select id="search" resultMap="placeMap" parameterType="SearchCondition">
+		SELECT *
+		FROM place
+		<!-- 검색 조건 (동적쿼리)-->
+		<if test="key != 'none'">
+			WHERE ${key} LIKE concat('%', #{word}, '%')
+		</if>
+		<!-- 어떤 기준으로 어떤 방향으로 정렬 -->
+		<if test="orderBy != 'none'">
+			ORDER BY ${orderBy} ${orderByDir}
+		</if>
+	</select>
 	
 </mapper>
