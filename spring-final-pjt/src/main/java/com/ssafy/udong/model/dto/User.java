@@ -5,6 +5,7 @@ import java.util.Date;
 public class User {
 	private int userId; 		//유저id
 	private String name; 		//유저명
+	private String email;		//이메일
 	private String password; 	//비밀번호
 	private String favorites; 	//즐겨찾기
 	private Date regDate; 		//가입날짜
@@ -13,11 +14,13 @@ public class User {
 	
 	//기본생성자
 	public User() {}
-	
-	public User(int userId, String name, String password, String favorites, Date regDate, Date loginDate,
+
+	public User(int userId, String name, String email, String password, String favorites, Date regDate, Date loginDate,
 			String isRetired) {
+		super();
 		this.userId = userId;
 		this.name = name;
+		this.email = email;
 		this.password = password;
 		this.favorites = favorites;
 		this.regDate = regDate;
@@ -39,6 +42,14 @@ public class User {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getPassword() {
@@ -73,19 +84,21 @@ public class User {
 		this.loginDate = loginDate;
 	}
 
-	public String isRetired() {
+	public String getIsRetired() {
 		return isRetired;
 	}
 
-	public void setRetired(String isRetired) {
+	public void setIsRetired(String isRetired) {
 		this.isRetired = isRetired;
 	}
 
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", name=" + name + ", password=" + password + ", favorites=" + favorites
-				+ ", regDate=" + regDate + ", loginDate=" + loginDate + ", isRetired=" + isRetired + "]";
+		return "User [userId=" + userId + ", name=" + name + ", email=" + email + ", password=" + password
+				+ ", favorites=" + favorites + ", regDate=" + regDate + ", loginDate=" + loginDate + ", isRetired="
+				+ isRetired + "]";
 	}
+	
 	
 	
 	

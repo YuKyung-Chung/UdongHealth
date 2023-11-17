@@ -28,9 +28,9 @@ CREATE TABLE if not exists `user` (
     email VARCHAR(50) NOT NULL,
     password VARCHAR(20) NOT NULL,
     favorites VARCHAR(20),
-    reg_date DATE,
-    login_date DATE,
-    is_retired VARCHAR(1),
+    reg_date DATETIME,
+    login_date DATETIME,
+    is_retired VARCHAR(1) DEFAULT 'N',
     PRIMARY KEY(user_id)
 ) ENGINE=InnoDB DEFAULT CHARACTER SET = utf8mb4;
 
@@ -53,9 +53,9 @@ CREATE TABLE if not exists `equipment` (
     PRIMARY KEY(eq_name)
 ) ENGINE=InnoDB DEFAULT CHARACTER SET = utf8mb4;
 
-INSERT INTO user(name, email, password, favorites, reg_date, login_date, is_retired)
-VALUES('정유경','ssafy1@gmail.com','1234',null,null,null,'N'),
-('조용환','ssafy2@gmail.com','1234',null,null,null,'N');
+INSERT INTO user(name, email, password, favorites, reg_date)
+VALUES('정유경','ssafy1@gmail.com','1234',null,now()),
+('조용환','ssafy2@gmail.com','1234',null,now());
 
 INSERT INTO review(user_id, place_id, writer, content)
 VALUES(1,1,'정유경','여기 완전 추천이에용'),
