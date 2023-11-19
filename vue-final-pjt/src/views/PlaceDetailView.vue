@@ -2,8 +2,23 @@
     <div class="container">
         <div id="map2"></div>
         <div>
-            {{ place }}
+            <p>{{ place.addressGu + " " + place.addressDong + " " + place.공원명 }}</p>
             <!-- <TheReviewList /> -->
+            <table border="1">
+                <th>작성자</th>
+                <th>내용</th>
+                <th>조회수</th>
+                <th></th>
+                <th></th>
+                <tr v-for="review in reviews" :key="review.reviewId">
+                    <td>{{ review.writer }}</td>
+                    <td>{{ review.content }}</td>
+                    <td>{{ review.viewCnt }}</td>
+
+                    <td><button @click="goReviewDetail(review.reviewId)" :placeId="place.placeId">수정</button></td>
+                    <td><button @click="goReviewDelete(review.reviewId)" :placeId="place.placeId">삭제</button></td>
+                </tr>
+            </table>
         </div>
     </div>
 </template>
@@ -15,14 +30,15 @@ import { useRoute } from 'vue-router';
 
 const route = useRoute();
 const place = ref({});
+const reviews = ref([]);
 const placeId = route.params.placeId;
 let map = null;
 const initMap = function () {
-    console.log(place.value.위도)
     let myCenter = new kakao.maps.LatLng(place.value.위도, place.value.경도); //공원위치
+
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
-            const lt = position.coords.latitude;
+            const lat = position.coords.latitude;
             const lon = position.coords.longitude;
             myCenter = new kakao.maps.LatLng(lat, lon);
             new kakao.maps.Marker({
@@ -31,6 +47,7 @@ const initMap = function () {
             });
             map.setCenter(myCenter);
         });
+
     }
     const container = document.getElementById('map2');
     const options = {
@@ -47,6 +64,7 @@ const initMap = function () {
     // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
     const zoomControl = new kakao.maps.ZoomControl();
     map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+   
 };
 
 
@@ -85,10 +103,13 @@ const displayMarker = function (markerPositions) {
 
 onMounted(async () => {
     try {
-        const URL = import.meta.env.VITE_APP_API_URL + "/" + placeId;
+        let URL = import.meta.env.VITE_APP_API_PLACE_URL + "/" + placeId;
         console.log(URL);
-        const response = await axios.get(URL);
-        place.value = response.data;
+        const pResponse = await axios.get(URL);
+        place.value = pResponse.data;
+        URL = import.meta.env.VITE_APP_API_REVIEW_URL + "/" + place.value.placeId
+        const rResponse = await axios.get(URL);
+        reviews.value = rResponse.data;
         if (window.kakao && window.kakao.maps) {
             initMap();
         } else {
@@ -100,11 +121,26 @@ onMounted(async () => {
             }); //헤드태그에 추가
             document.head.appendChild(script);
         }
+
+
     } catch (error) {
         console.log(error);
     };
 
 })
+
+function addMarker(position) {
+    // 마커를 생성합니다
+    let marker = new kakao.maps.Marker({
+        position: position
+    });
+
+    // 마커가 지도 위에 표시되도록 설정합니다
+    marker.setMap(map);
+
+    // 생성된 마커를 배열에 추가합니다
+    markers.value.push(marker);
+}
 
 
 </script>
@@ -113,5 +149,9 @@ onMounted(async () => {
 #map2 {
     width: 60%;
     height: 70vh;
+}
+
+.container {
+    display: flex;
 }
 </style>

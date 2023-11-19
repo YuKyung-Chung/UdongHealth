@@ -7,7 +7,7 @@ export const usePlaceStore = defineStore('place', () => {
 
     const getPlaces = async () => {
         try {
-            const URL = import.meta.env.VITE_APP_API_URL;
+            const URL = import.meta.env.VITE_APP_API_PLACE_URL;
             const response = await axios.get(URL);
             places.value = response.data;
         } catch (error) {
