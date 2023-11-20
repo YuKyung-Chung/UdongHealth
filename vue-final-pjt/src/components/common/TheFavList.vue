@@ -10,7 +10,7 @@
 <script setup>
 import {ref} from 'vue'
 
-const favList = [];
+const favList = ref([]);
 
 </script>
 

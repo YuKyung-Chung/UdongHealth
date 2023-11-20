@@ -14,13 +14,15 @@ import axios from 'axios';
 import { ref, onMounted, toRaw } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import TheReviewList from '@/components/review/TheReviewList.vue';
+import { usePlaceStore } from '../stores/place';
 
 const route = useRoute();
 const router = useRouter();
 const place = ref({});
 const reviews = ref([]);
 const placeId = route.params.placeId;
-
+const store = usePlaceStore();
+store.setReviewPlaceId(placeId);  
 
 
 
