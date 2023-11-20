@@ -13,7 +13,7 @@
             <label for="pw">패스워드</label>
             <input type="password" v-model="pw" id="pw" placeholder="비밀번호" />
             <br>
-            <button type="submit" class="btn btn-primary mb-3" @click.stop.prevent=signupId>제출</button>
+            <button type="submit" class="btn btn-primary mb-3" @click.stop.prevent=signupId @keyup.enter.stop.prevent=signupId>제출</button>
         </form>
     </div>
 </template>
@@ -28,31 +28,26 @@ const email = ref("");
 const pw = ref("");
 
 const signupId = async () => {
-    const signUp = { name: name, email: email, password: pw };
     const URL = import.meta.env.VITE_APP_API_URL + "/" + "signup";
-    console.log(URL);
     axios
-        .post(URL, signUp)
+        .post(URL, {
+            name : name.value,
+            email : email.value,
+            password : pw.value,
+        })
         .then((res) => {
 
             console.log(res)
             alert("회원가입 완료!, 로그인 해주세요");
+            router.replace("/");
         })
         .catch((res) => {
-            alert("아이디 중복입니다. 다른 아이디를 사용해주세요")
+            alert("중복 아이디입니다. 다른 아이디를 사용해주세요")
             console.log(res);
         })
 
 
-    // await axios.post(URL, signUp, 
-    // ).then((res) => {
-    //     alert("회원가입 완료!, 로그인 해주세요");
-    //     router.replace("/")
-    // }).catch((res) => {
-    //     alert("아이디 중복입니다. 다른 아이디를 사용해주세요")
-    //     router.replace("/signup");
-    // })
-
+  
 }
 </script>
 
