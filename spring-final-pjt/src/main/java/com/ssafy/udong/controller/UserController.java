@@ -32,7 +32,7 @@ public class UserController {
 	
 	//로그인
 	@PostMapping("/login")
-	public ResponseEntity<?> login(User user) throws Exception{
+	public ResponseEntity<?> login(@RequestBody User user) throws Exception{
 		User tmp = userService.login(user);
 		
 		//유저 정보가 없을 경우
