@@ -7,6 +7,8 @@ import KindUpperBody from '@/components/kind/KindUpperBody.vue'
 import KindLowerBody from '@/components/kind/KindLowerBody.vue'
 import KindCore from '@/components/kind/KindCore.vue'
 import PlaceDetailView from '../views/PlaceDetailView.vue'
+import ReviewEditView from '@/components/review/ReviewEditView.vue'
+import TheSignupView from '../views/TheSignupView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -55,6 +57,14 @@ const router = createRouter({
       }],
 
 
+    }, {
+      path: '/reviewEdit',
+      name: 'reviewEdit',
+      component: ReviewEditView
+    }, {
+      path: '/signup',
+      name: 'signup',
+      component: TheSignupView
     }
   ]
 })

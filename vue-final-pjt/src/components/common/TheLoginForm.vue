@@ -11,6 +11,8 @@
         
         <div class="row-auto">
             <button type="submit" class="btn btn-primary mb-3">로그인</button>
+            <RouterLink to="/signup"> 회원가입 </RouterLink> 
+            
         </div>
 
     </form>

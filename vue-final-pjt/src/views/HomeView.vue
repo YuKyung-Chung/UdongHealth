@@ -1,11 +1,11 @@
 <template>
-    <div class="container">
-        <div id="map"></div>
-        <div>
-            <h2>추천 무료 헬스장</h2>
-            <TheLecList/>
-        </div>
+  <div class="container">
+    <div id="map"></div>
+    <div>
+      <h2>추천 무료 헬스장</h2>
+      <TheLecList />
     </div>
+  </div>
 </template>
 
 <script setup>
@@ -14,7 +14,7 @@ import TheLecList from '../components/common/TheLecList.vue';
 
 let map = null;
 const initMap = function () {
-  let myCenter = new kakao.maps.LatLng(37.501286, 127.0396029); //카카오본사
+  let myCenter = new kakao.maps.LatLng(37.501286, 127.0396029); // 역삼역 멀티캠퍼스
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((position) => {
       const lat = position.coords.latitude;
@@ -27,12 +27,24 @@ const initMap = function () {
       map.setCenter(myCenter);
     });
   }
+  
   const container = document.getElementById('map');
   const options = {
     center: myCenter,
     level: 3,
   }; // 지도 객체를 등록합니다.
   map = new kakao.maps.Map(container, options);
+  new kakao.maps.Marker({
+    map,
+    position: myCenter,
+  });
+  // const otherPosition = new kakao.maps.LatLng(37.500286, 127.0394029);
+  // new kakao.maps.Marker({
+  //   map,
+  //   position: otherPosition,
+  // }); //마커 넣는 방식
+
+
   // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
   const mapTypeControl = new kakao.maps.MapTypeControl();
 
@@ -49,9 +61,8 @@ onMounted(() => {
     initMap();
   } else {
     const script = document.createElement('script'); // autoload=false 스크립트를 동적으로 로드하기 위해서 사용
-    script.src = `//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=${
-        import.meta.env.VITE_APP_MAP_API_KEY
-    }`;
+    script.src = `//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=${import.meta.env.VITE_APP_MAP_API_KEY
+      }`;
     script.addEventListener('load', () => {
       kakao.maps.load(initMap);
     }); //헤드태그에 추가
@@ -98,8 +109,8 @@ const displayMarker = function (markerPositions) {
   width: 60%;
   height: 70vh;
 }
-.container {
-    display : flex;
-}
 
+.container {
+  display: flex;
+}
 </style>

@@ -7,11 +7,14 @@
       <div class="row">
         <section class="col-9">
 
-            <RouterView />
+          <RouterView />
         </section>
         <aside class="col-3">
-          <LoginForm />
-          <TheFavList />
+          <div v-if="$route.path !== '/signup'">
+            <LoginForm />
+            <TheFavList />
+          </div>
+          
         </aside>
       </div>
     </main>
@@ -28,5 +31,4 @@ import LoginForm from "./components/common/TheLoginForm.vue";
 import TheFavList from "./components/common/TheFavList.vue";
 </script>
 
-<style  scoped>
-</style>
+<style  scoped></style>

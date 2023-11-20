@@ -3,22 +3,8 @@
         <div id="map2"></div>
         <div>
             <p>{{ place.addressGu + " " + place.addressDong + " " + place.공원명 }}</p>
-            <!-- <TheReviewList /> -->
-            <table border="1">
-                <th>작성자</th>
-                <th>내용</th>
-                <th>조회수</th>
-                <th></th>
-                <th></th>
-                <tr v-for="review in reviews" :key="review.reviewId">
-                    <td>{{ review.writer }}</td>
-                    <td>{{ review.content }}</td>
-                    <td>{{ review.viewCnt }}</td>
-
-                    <td><button @click="goReviewDetail(review.reviewId)" :placeId="place.placeId">수정</button></td>
-                    <td><button @click="goReviewDelete(review.reviewId)" :placeId="place.placeId">삭제</button></td>
-                </tr>
-            </table>
+           <TheReviewList :placeId = "placeId"/>
+            
         </div>
     </div>
 </template>
@@ -26,35 +12,35 @@
 <script setup>
 import axios from 'axios';
 import { ref, onMounted, toRaw } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
+import TheReviewList from '@/components/review/TheReviewList.vue';
 
 const route = useRoute();
+const router = useRouter();
 const place = ref({});
 const reviews = ref([]);
 const placeId = route.params.placeId;
+
+
+
+
+
+
 let map = null;
 const initMap = function () {
     let myCenter = new kakao.maps.LatLng(place.value.위도, place.value.경도); //공원위치
 
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {
-            const lat = position.coords.latitude;
-            const lon = position.coords.longitude;
-            myCenter = new kakao.maps.LatLng(lat, lon);
-            new kakao.maps.Marker({
-                map,
-                position: myCenter,
-            });
-            map.setCenter(myCenter);
-        });
 
-    }
     const container = document.getElementById('map2');
     const options = {
         center: myCenter,
         level: 3,
     }; // 지도 객체를 등록합니다.
     map = new kakao.maps.Map(container, options);
+    new kakao.maps.Marker({
+        map,
+        position: myCenter,
+    });
     // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
     const mapTypeControl = new kakao.maps.MapTypeControl();
 
@@ -64,7 +50,7 @@ const initMap = function () {
     // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
     const zoomControl = new kakao.maps.ZoomControl();
     map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-   
+
 };
 
 
@@ -105,11 +91,9 @@ onMounted(async () => {
     try {
         let URL = import.meta.env.VITE_APP_API_PLACE_URL + "/" + placeId;
         console.log(URL);
-        const pResponse = await axios.get(URL);
-        place.value = pResponse.data;
-        URL = import.meta.env.VITE_APP_API_REVIEW_URL + "/" + place.value.placeId
-        const rResponse = await axios.get(URL);
-        reviews.value = rResponse.data;
+        const response = await axios.get(URL);
+        place.value = response.data;
+        
         if (window.kakao && window.kakao.maps) {
             initMap();
         } else {
