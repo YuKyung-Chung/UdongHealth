@@ -3,6 +3,13 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ssafy.udong.model.dao.EquipmentDao">
+ 	<resultMap type="Equipment" id="equipmentMap">
+		<result column="eq_id" property="eqId"/>
+		<result column="eq_part" property="eqPart"/>
+		<result column="eq_div" property="eqDiv"/>
+		<result column="eq_name" property="eqName"/>
+	</resultMap>
+	
 
 	
 </mapper>
