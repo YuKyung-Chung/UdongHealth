@@ -19,4 +19,7 @@ public interface PlaceService {
 	//검색 기능
 	List<Place> search(SearchCondition condition);
 
+	//현재 위치에서 가장 가까운 곳 4곳 조회
+	List<Place> findNearPlaces(double latitude, double longitude);
+
 }

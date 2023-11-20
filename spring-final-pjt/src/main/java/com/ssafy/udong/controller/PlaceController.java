@@ -6,7 +6,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,6 +23,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ssafy.udong.model.dto.Place;
 import com.ssafy.udong.model.dto.SearchCondition;
+import com.ssafy.udong.model.service.EquipmentService;
 import com.ssafy.udong.model.service.PlaceService;
 
 @RestController
@@ -33,6 +36,20 @@ public class PlaceController {
 	@Value("${api-key}")
 	String APIKey;
 	
+	Set<String> set;
+	
+	//현재 위치에서 가장 가까운 곳 4곳 찾아서 출력
+	@GetMapping("/find/{latitude}/{longitude}")
+	public ResponseEntity<?> getNearestPlace(@PathVariable double latitude,
+			@PathVariable double longitude){
+		List<Place> nearPlaces = placeService.findNearPlaces(latitude, longitude);
+		
+		if(nearPlaces == null || nearPlaces.size() == 0) {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<>(nearPlaces, HttpStatus.OK);
+	}
+	
 	//장소 목록 전체 조회
 	@GetMapping("/place")
 	public ResponseEntity<?> getListFromApi() throws IOException {
@@ -42,6 +59,26 @@ public class PlaceController {
 		if(existingPlaces.isEmpty()) {
 			existingPlaces = callOpenApi();
 		}
+		
+		set = new HashSet<>();
+        
+		for (Place p : existingPlaces) {
+			String str = p.getEqKind();
+			if(str != null) {
+	            String[] strArr = str.split(",");
+	            for (String tmpStr : strArr) {
+	                set.add(tmpStr.trim().split(" ")[0]);
+	            }
+			}
+			
+		}
+//		equipmentService.classify(set);
+
+//        for (String strC : set) {
+//            System.out.println(strC);
+//        }
+//		
+		
 		return new ResponseEntity<>(existingPlaces, HttpStatus.OK);
 	}
 	
