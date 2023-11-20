@@ -72,12 +72,6 @@ public class PlaceController {
 			}
 			
 		}
-//		equipmentService.classify(set);
-
-//        for (String strC : set) {
-//            System.out.println(strC);
-//        }
-//		
 		
 		return new ResponseEntity<>(existingPlaces, HttpStatus.OK);
 	}

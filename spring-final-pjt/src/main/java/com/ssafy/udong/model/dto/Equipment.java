@@ -1,25 +1,28 @@
 package com.ssafy.udong.model.dto;
 
 public class Equipment {
-	private String eqName; //운동기구명
-	private String eqPart; //운동부위
-	private String eqImg;  //운동기구사진
+	private int eqId;
+	private String eqPart; //운동 부위 분류
+	private String eqDiv; //운동 부위 분류 상세
+	private String eqName; //운동기구 명
 	
 	//기본생성자
 	public Equipment() {}
-	
-	public Equipment(String eqName, String eqPart, String eqImg) {
-		this.eqName = eqName;
+
+	public Equipment(int eqId, String eqPart, String eqDiv, String eqName) {
+		super();
+		this.eqId = eqId;
 		this.eqPart = eqPart;
-		this.eqImg = eqImg;
-	}
-
-	public String getEqName() {
-		return eqName;
-	}
-
-	public void setEqName(String eqName) {
+		this.eqDiv = eqDiv;
 		this.eqName = eqName;
+	}
+
+	public int getEqId() {
+		return eqId;
+	}
+
+	public void setEqId(int eqId) {
+		this.eqId = eqId;
 	}
 
 	public String getEqPart() {
@@ -30,18 +33,29 @@ public class Equipment {
 		this.eqPart = eqPart;
 	}
 
-	public String getEqImg() {
-		return eqImg;
+	public String getEqDiv() {
+		return eqDiv;
 	}
 
-	public void setEqImg(String eqImg) {
-		this.eqImg = eqImg;
+	public void setEqDiv(String eqDiv) {
+		this.eqDiv = eqDiv;
+	}
+
+	public String getEqName() {
+		return eqName;
+	}
+
+	public void setEqName(String eqName) {
+		this.eqName = eqName;
 	}
 
 	@Override
 	public String toString() {
-		return "Equipment [eqName=" + eqName + ", eqPart=" + eqPart + ", eqImg=" + eqImg + "]";
+		return "Equipment [eqId=" + eqId + ", eqPart=" + eqPart + ", eqDiv=" + eqDiv + ", eqName=" + eqName + "]";
 	}
+	
+	
+	
 	
 	
 	
