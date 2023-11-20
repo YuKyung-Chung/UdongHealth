@@ -3,6 +3,7 @@ import { defineStore } from 'pinia'
 import axios from 'axios';
 export const usePlaceStore = defineStore('place', () => {
 
+    const reviewPlaceId = ref(-1);
     const places = ref([]);
 
     const getPlaces = async () => {
@@ -14,8 +15,11 @@ export const usePlaceStore = defineStore('place', () => {
             console.log(error);
         }
     };
+    const setReviewPlaceId = (placeId) => {
+        reviewPlaceId.value = placeId;
+    }
 
 
 
-    return { places, getPlaces, }
+    return { places, getPlaces, reviewPlaceId, setReviewPlaceId}
 })

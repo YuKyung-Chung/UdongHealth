@@ -6,7 +6,7 @@
 </template>
 
 <script setup>
-import { onBeforeMount } from 'vue';
+import { onMounted } from 'vue';
 import { useUserStore } from '../../stores/user';
 import router from '../../router';
 const store = useUserStore();
