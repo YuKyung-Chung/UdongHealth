@@ -57,6 +57,12 @@ public class PlaceServiceImpl implements PlaceService{
 	public List<Place> search(SearchCondition condition) {
 		return placeDao.search(condition);
 	}
+
+	//현재 위치에서 가장 가까운 4곳 조회
+	@Override
+	public List<Place> findNearPlaces(double latitude, double longitude) {
+		return placeDao.findNearPlaces(latitude, longitude);
+	}
 	
 	
 	

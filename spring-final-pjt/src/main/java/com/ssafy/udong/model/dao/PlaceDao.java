@@ -17,4 +17,7 @@ public interface PlaceDao {
 
 	// 검색 기능
 	public List<Place> search(SearchCondition condition);
+
+	//현재 위치에서 가장 가까운 4곳 조회
+	public List<Place> findNearPlaces(double latitude, double longitude);
 }
