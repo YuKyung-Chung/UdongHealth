@@ -13,7 +13,7 @@ public interface PlaceDao {
 	public List<Place> getPlaces();
 
 	//상세 장소 조회
-	public Place getPlace(int placeId);
+	public Place getPlaceById(int placeId);
 
 	// 검색 기능
 	public List<Place> search(SearchCondition condition);

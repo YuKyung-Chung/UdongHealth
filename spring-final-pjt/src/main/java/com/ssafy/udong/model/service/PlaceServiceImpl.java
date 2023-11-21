@@ -49,7 +49,7 @@ public class PlaceServiceImpl implements PlaceService{
 	//상세 장소 조회
 	@Override
 	public Place getPlace(int placeId) {
-		return placeDao.getPlace(placeId);
+		return placeDao.getPlaceById(placeId);
 	}
 
 	//검색 기능

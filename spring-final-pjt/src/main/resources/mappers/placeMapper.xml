@@ -31,7 +31,7 @@
 	</select>
 	
 	<!-- 상세 장소 조회 -->
-	<select id="getPlace" parameterType="int" resultMap="placeMap">
+	<select id="getPlaceById" parameterType="int" resultMap="placeMap">
 		SELECT *
 		FROM place
 		WHERE place_id = #{placeId}

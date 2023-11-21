@@ -10,7 +10,11 @@ public interface UserDao {
 	//회원 이메일로 조회
 	public User getUserByEmail(String email);
 
+	//회원 아이디로 조회
+	public User getUserById(int userId);
+	
 	//회원 조회
 	public User getUser(String email);
+
 
 }
