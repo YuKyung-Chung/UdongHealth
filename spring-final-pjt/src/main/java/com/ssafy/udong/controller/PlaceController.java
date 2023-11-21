@@ -14,8 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,20 +37,7 @@ public class PlaceController {
 	
 	@Value("${api-key}")
 	String APIKey;
-	
-	Set<String> set;
-	
-	//현재 위치에서 가장 가까운 곳 4곳 찾아서 출력
-	@GetMapping("/find/{latitude}/{longitude}")
-	public ResponseEntity<?> getNearestPlace(@PathVariable double latitude,
-			@PathVariable double longitude){
-		List<Place> nearPlaces = placeService.findNearPlaces(latitude, longitude);
-		
-		if(nearPlaces == null || nearPlaces.size() == 0) {
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		}
-		return new ResponseEntity<>(nearPlaces, HttpStatus.OK);
-	}
+
 	
 	//장소 목록 전체 조회
 	@GetMapping("/place")
@@ -59,8 +48,7 @@ public class PlaceController {
 		if(existingPlaces.isEmpty()) {
 			existingPlaces = callOpenApi();
 		}
-		
-		set = new HashSet<>();
+		Set<String> set = new HashSet<>();
         
 		for (Place p : existingPlaces) {
 			String str = p.getEqKind();
@@ -70,9 +58,7 @@ public class PlaceController {
 	                set.add(tmpStr.trim().split(" ")[0]);
 	            }
 			}
-			
 		}
-		
 		return new ResponseEntity<>(existingPlaces, HttpStatus.OK);
 	}
 	
@@ -85,6 +71,18 @@ public class PlaceController {
 			return new ResponseEntity<Place>(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<Place>(place, HttpStatus.OK);
+	}
+	
+	//현재 위치에서 가장 가까운 곳 4곳 찾아서 출력
+	@GetMapping("/place/find/{latitude}/{longitude}")
+	public ResponseEntity<?> getNearestPlace(@PathVariable double latitude,
+			@PathVariable double longitude){
+		List<Place> nearPlaces = placeService.findNearPlaces(latitude, longitude);
+		
+		if(nearPlaces == null || nearPlaces.size() == 0) {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<>(nearPlaces, HttpStatus.OK);
 	}
 	
 	//검색기능
