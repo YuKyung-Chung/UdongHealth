@@ -2,15 +2,14 @@
     <form class="col">
         <div class="row-auto">
             <label for="search">Search</label>
-            <input type="text" class="form-control" id="search" placeholder="키워드를 쓰시오.">
+            <input type="text" class="form-control" id="search" v-model="keyword" placeholder="키워드를 쓰시오.">
         </div>
-        <input type="radio" name="searchCondition" value="공원이름" checked>공원이름
-        <input type="radio" name="searchCondition" value="지역(동)">지역(동)
-        <input type="radio" name="searchCondition" value="운동부위">(운동부위)
+        <input type="radio" v-model="searchCondition" value="plac_Name" checked>공원이름
+        <input type="radio" v-model="searchCondition" value="address_dong">지역(동)
+        <input type="radio" v-model="searchCondition" value="fitPart">(운동부위)
         <div class="row-auto">
-            <button type="submit" class="btn btn-primary mb-3" @click.stop.prevent>검색</button>
+            <button type="submit" class="btn btn-primary mb-3" @keyup.enter.stop.prevent=searchPlace @click.stop.prevent=searchPlace>검색</button>
         </div>
-
     </form>
     <table border="1">
         <th>지역구</th>
@@ -39,9 +38,35 @@ const placeStore = usePlaceStore();
 const limitPlace = ref([]);
 const router = useRouter();
 const user = ref({});
+const keyword = ref("");
+const searchCondition = ref("place_name");
 const goDetail = (placeId) => {
     router.push({ name: 'placeDetail', params: { placeId: placeId } })
 }
+const searchPlace = async() => {
+    const URL = import.meta.env.VITE_APP_API_PLACE_URL +"/search";
+    console.log(URL);
+    console.log(keyword.value);
+    console.log(searchCondition.value);
+    try {
+        const response = await axios.get(URL, {
+            params: {
+                key : searchCondition.value,
+                word : keyword.value,
+            }
+      
+        })
+        limitPlace.value = response.data;
+        console.log(response.data);
+        keyword.value = "";
+    }
+    catch (error){
+        console.log(error);
+
+    }
+}   
+
+
 
 const addFav = async (placeId) => {
     if (userStore.loginTF === false) {
