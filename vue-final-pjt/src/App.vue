@@ -38,20 +38,21 @@ import LoginForm from "./components/common/TheLoginForm.vue";
 import TheFavList from "./components/common/TheFavList.vue";
 import { useUserStore } from './stores/user'
 import SigninForm from "./components/common/TheSigninForm.vue";
-import { onBeforeUnmount, ref,  } from "vue";
+import { onBeforeUnmount, onMounted, ref,  } from "vue";
 
 const user = ref({});
 
 
 const store = useUserStore();
 
-
-
-
-onBeforeUnmount(() => {
-  sessionStorage.removeItem("user");
-  store.loginTF = false;
+onMounted(() => {
+  if (sessionStorage.getItem("user") !== null) {
+    store.loginTF = true;
+  }
 })
+
+
+
 </script>
 
 <style scoped></style>

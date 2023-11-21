@@ -53,8 +53,7 @@ const addFav = async (placeId) => {
     try {
         const response = axios.post(URL)
         alert("찜 등록에 성공했습니다.")
-        console.log(response);
-
+        userStore.addFavTF = true;
     }
     catch (error) {
         console.log(error);
