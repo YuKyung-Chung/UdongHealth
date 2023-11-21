@@ -37,7 +37,7 @@
 	</delete>
 	
 	<!-- 리뷰 수정 -->
-	<update id="updateReview" parameterType="Review">
+	<update id="updateReview" >
 		UPDATE review
 		SET content = #{content}
 		WHERE review_id = #{reviewId}

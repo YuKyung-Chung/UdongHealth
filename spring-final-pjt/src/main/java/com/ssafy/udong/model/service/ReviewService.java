@@ -18,7 +18,9 @@ public interface ReviewService {
 	public boolean removeReview(int reviewId);
 
 	//리뷰 수정
-	public boolean modifyReview(Review review);
+//	public boolean modifyReview(Review review);
+
+	public boolean modifyReview(String content, int reviewId);
 
 	
 }
