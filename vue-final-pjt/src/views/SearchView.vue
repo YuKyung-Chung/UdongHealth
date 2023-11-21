@@ -13,14 +13,16 @@
 
     </form>
     <table border="1">
-            <th>지역구</th>
-            <th>동</th>
-            <th>상세주소</th>
+        <th>지역구</th>
+        <th>동</th>
+        <th>상세주소</th>
+        <th>찜버튼</th>
         <tr v-for="place in limitPlace" :key="place.placeId">
-                <td>{{ place.addressGu }}</td>
-                <td>{{ place.addressDong }}</td>
-                <td>{{ place.addressDetail }}</td>
-                <td><button @click="goDetail(place.placeId)" :placeId="place.placeId">상세보기</button></td>
+            <td>{{ place.addressGu }}</td>
+            <td>{{ place.addressDong }}</td>
+            <td>{{ place.addressDetail }}</td>
+            <td><button @click="goDetail(place.placeId)" :placeId="place.placeId">상세보기</button></td>
+            <td><button @click.stop.prevent=addFav(place.placeId)>찜 등록</button></td>
         </tr>
 
     </table>
@@ -30,26 +32,50 @@
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { usePlaceStore } from '../stores/place';
-const store = usePlaceStore();
+import { useUserStore } from '../stores/user';
+import axios from 'axios';
+const userStore = useUserStore();
+const placeStore = usePlaceStore();
 const limitPlace = ref([]);
 const router = useRouter();
+const user = ref({});
 const goDetail = (placeId) => {
-    router.push({name: 'placeDetail', params: {placeId : placeId}})
+    router.push({ name: 'placeDetail', params: { placeId: placeId } })
+}
+
+const addFav = async (placeId) => {
+    if (userStore.loginTF === false) {
+        alert("찜 기능을 사용할려면 로그인 해주세요")
+        return;
+    }
+    const URL = import.meta.env.VITE_APP_API_FAVORITES_URL + `/${user.value.userId}/${placeId}` 
+
+    try {
+        const response = axios.post(URL)
+        alert("찜 등록에 성공했습니다.")
+        console.log(response);
+
+    }
+    catch (error) {
+        console.log(error);
+    }
+
+
 }
 
 
 
 
 
-
 onMounted(async () => {
-    await store.getPlaces();
-    if (store.places.length >=20) {
-        limitPlace.value = store.places.slice(0, 20);
+    await placeStore.getPlaces();
+    if (placeStore.places.length >= 20) {
+        limitPlace.value = placeStore.places.slice(0, 20);
 
     } else {
-        limitPlace.value = store.places;
+        limitPlace.value = placeStore.places;
     }
+    user.value = JSON.parse(sessionStorage.getItem("user"));
 
 })
 
