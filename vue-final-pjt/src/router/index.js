@@ -58,9 +58,9 @@ const router = createRouter({
 
 
     }, {
-      path: '/reviewEdit',
+      path: '/reviewEdit/:reviewId/:content',
       name: 'reviewEdit',
-      component: ReviewEditView
+      component: ReviewEditView,
     }, {
       path: '/signup',
       name: 'signup',

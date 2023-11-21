@@ -24,22 +24,33 @@ import axios from 'axios';
 import { ref, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { usePlaceStore } from '../../stores/place';
+import { useUserStore } from '../../stores/user';
 
 const route = useRoute();
 const router = useRouter();
 const reviews = ref([]);
-const store = usePlaceStore();
+const userStore = useUserStore();
+const placeStore = usePlaceStore();
 
 const goReviewEdit = (review) => {
-    return router.push({ name: 'reviewEdit', params: { review: review } });
-}
+    if (userStore.loginTF === false) {
+        alert("로그인을 먼저 해주세요")
+        return router.push("/")
+
+    } else if(review.userId !== JSON.parse(sessionStorage.getItem("user")).userId) {
+        alert("본인이 작성한 리뷰만 수정 가능합니다.")
+        return router.push("/")
+    } 
+    else {
+        
+        return router.push({ name: 'reviewEdit', params: { reviewId: review.reviewId, content : review.content } });
+    }
+}   
 
 const goReviewDelete = async (review) => {
     if (review.userId === JSON.parse(sessionStorage.getItem("user")).userId) {
         try {
-            let URL = import.meta.env.VITE_APP_API_REVIEW_URL + "/" + store.reviewPlaceId + "/" + review.reviewId
-            console.log(store.reviewPlaceId);
-            console.log(review.reviewId);
+            let URL = import.meta.env.VITE_APP_API_REVIEW_URL + "/" + placeStore.reviewPlaceId + "/" + review.reviewId
             let response = await axios.delete(URL);
             URL = import.meta.env.VITE_APP_API_REVIEW_URL + "/" + route.params.placeId
             response = await axios.get(URL);

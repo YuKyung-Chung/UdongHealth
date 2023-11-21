@@ -22,7 +22,7 @@ const place = ref({});
 const reviews = ref([]);
 const placeId = route.params.placeId;
 const store = usePlaceStore();
-store.setReviewPlaceId(placeId);  
+store.setReviewPlaceId(placeId); 
 
 
 

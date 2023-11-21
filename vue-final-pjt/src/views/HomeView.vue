@@ -11,6 +11,7 @@
 <script setup>
 import { onMounted, ref, toRaw } from 'vue';
 import TheLecList from '../components/common/TheLecList.vue';
+import router from '../router';
 
 
 let map = null;
