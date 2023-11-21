@@ -7,4 +7,6 @@ import com.ssafy.udong.model.dto.SearchCondition;
 
 public interface EquipmentService {
 
+	List<Equipment> searchByHashtag(String hashtag);
+
 }
