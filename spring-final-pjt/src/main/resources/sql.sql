@@ -56,6 +56,17 @@ CREATE TABLE if not exists `equipment` (
     PRIMARY KEY(eq_id)
 ) ENGINE=InnoDB DEFAULT CHARACTER SET = utf8mb4;
 
+CREATE TABLE if not exists `favorites` (
+	favorites_id INT AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    place_id INT NOT NULL,
+    PRIMARY KEY(favorites_id),
+	FOREIGN KEY (user_id) REFERENCES `user` (user_id),
+    FOREIGN KEY (place_id) REFERENCES `place` (place_id)
+) ENGINE=InnoDB DEFAULT CHARACTER SET = utf8mb4;
+
+
+
 -- 데이터 삽입
 INSERT INTO equipment(eq_part, eq_div,eq_name)
 VALUES('온몸','["온몸","몸","몸통","바디"]','[]'),
@@ -109,3 +120,4 @@ SELECT * FROM place;
 SELECT * FROM user;
 SELECT * FROM review;
 SELECT * FROM equipment;
+SELECT * FROM favorites;
