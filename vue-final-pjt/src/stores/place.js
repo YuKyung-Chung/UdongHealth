@@ -15,6 +15,7 @@ export const usePlaceStore = defineStore('place', () => {
             console.log(error);
         }
     };
+
     const setReviewPlaceId = (placeId) => {
         reviewPlaceId.value = placeId;
     }

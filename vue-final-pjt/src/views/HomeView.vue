@@ -2,7 +2,7 @@
   <div class="container">
     <div id="map"></div>
     <div>
-      <h2>추천 무료 헬스장</h2>
+      <h2>추천 주변 무료 헬스장</h2>
       <TheLecList />
     </div>
   </div>
@@ -11,6 +11,7 @@
 <script setup>
 import { onMounted, ref, toRaw } from 'vue';
 import TheLecList from '../components/common/TheLecList.vue';
+
 
 let map = null;
 const initMap = function () {
