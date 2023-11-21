@@ -7,6 +7,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Place {
 	private int placeId;
 	
+	private String hashtag;
+	
+	private int cnt = 0;
+	
 	@JsonProperty("공원명")
 	private String placeName;
 	
@@ -46,14 +50,14 @@ public class Place {
 	
 	//기본생성자
 	public Place() {}
-	
-	
 
-
-	public Place(int placeId, String placeName, int eqYear, String address, String addressGu, String addressDong,
-			String addressDetail, String eqKind, String eqFix, String eqBroken, double latitude, double longitude,
-			String dept, String deptPhone, Date updateDate) {
+	public Place(int placeId, String hashtag, int cnt, String placeName, int eqYear, String address, String addressGu,
+			String addressDong, String addressDetail, String eqKind, String eqFix, String eqBroken, double latitude,
+			double longitude, String dept, String deptPhone, Date updateDate) {
+		super();
 		this.placeId = placeId;
+		this.hashtag = hashtag;
+		this.cnt = cnt;
 		this.placeName = placeName;
 		this.eqYear = eqYear;
 		this.address = address;
@@ -76,6 +80,22 @@ public class Place {
 
 	public void setPlaceId(int placeId) {
 		this.placeId = placeId;
+	}
+
+	public String getHashtag() {
+		return hashtag;
+	}
+
+	public void setHashtag(String hashtag) {
+		this.hashtag = hashtag;
+	}
+
+	public int getCnt() {
+		return cnt;
+	}
+
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
 	}
 
 	public String getPlaceName() {
@@ -192,11 +212,13 @@ public class Place {
 
 	@Override
 	public String toString() {
-		return "Place [placeId=" + placeId + ", placeName=" + placeName + ", eqYear=" + eqYear + ", address=" + address
-				+ ", addressGu=" + addressGu + ", addressDong=" + addressDong + ", addressDetail=" + addressDetail
-				+ ", eqKind=" + eqKind + ", eqFix=" + eqFix + ", eqBroken=" + eqBroken + ", latitude=" + latitude
-				+ ", longitude=" + longitude + ", dept=" + dept + ", deptPhone=" + deptPhone + ", updateDate="
-				+ updateDate + "]";
+		return "Place [placeId=" + placeId + ", hashtag=" + hashtag + ", cnt=" + cnt + ", placeName=" + placeName
+				+ ", eqYear=" + eqYear + ", address=" + address + ", addressGu=" + addressGu + ", addressDong="
+				+ addressDong + ", addressDetail=" + addressDetail + ", eqKind=" + eqKind + ", eqFix=" + eqFix
+				+ ", eqBroken=" + eqBroken + ", latitude=" + latitude + ", longitude=" + longitude + ", dept=" + dept
+				+ ", deptPhone=" + deptPhone + ", updateDate=" + updateDate + "]";
 	}
+	
+	
 
 }
