@@ -65,9 +65,9 @@ public class ReviewController {
 
 	// 리뷰 수정
 	@PutMapping("/review/{placeId}/{reviewId}")
-	public ResponseEntity<String> update(@RequestBody Review review,
+	public ResponseEntity<String> update(String content,
 			@PathVariable int placeId, @PathVariable int reviewId) {
-		if (reviewService.modifyReview(review))
+		if (reviewService.modifyReview(content, reviewId))
 			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 		return new ResponseEntity<String>(FAIL, HttpStatus.BAD_REQUEST);
 	}

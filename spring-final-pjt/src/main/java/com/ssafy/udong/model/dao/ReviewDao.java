@@ -19,9 +19,12 @@ public interface ReviewDao {
 	public int deleteReview(int reviewId);
 
 	//리뷰 수정
-	public int updateReview(Review review);
+	public int updateReview(int reviewId);
 
 	//조회수 증가
 	public void updateViewCnt(int reviewId);
+
+	public boolean updateReview(String content, int reviewId);
+
 	
 }
