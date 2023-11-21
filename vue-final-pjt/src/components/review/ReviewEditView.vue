@@ -3,9 +3,9 @@
         <h2> 리뷰 수정 여기서 할게요</h2>
         <form class="col">
             <div class="row-auto">
-                <label for="reviewContent">리뷰입력칸</label>
+                <label for="reviewContent">리뷰수정칸</label>
                 <input type="text" v-model="content" class="form-control" id="reviewContent"
-                    placeholder="리뷰입력칸">
+                    placeholder="리뷰수정칸">
             </div>
             <div class="row-auto">
                 <button type="submit" class="btn btn-primary mb-3" @click.stop.prevent=reviewEdit
@@ -22,25 +22,36 @@ import { useUserStore } from '../../stores/user';
 import { usePlaceStore } from '../../stores/place';
 import axios from 'axios'
 import router from '../../router';
+import {useRoute} from 'vue-router';
 const userStore = useUserStore();
 const placeStore = usePlaceStore();
 const content = ref("");
+const route = useRoute();
+const reviewId = ref("");
 const reviewEdit = async () => {
-    const URL = import.meta.env.VITE_APP_API_REVIEW_URL + "/" + placeStore.reviewPlaceId + "/" + router.params.review.reviewId;
+    const URL = import.meta.env.VITE_APP_API_REVIEW_URL + `/${placeStore.reviewPlaceId}/${reviewId.value}`;
+    console.log(URL);
+    try {
+        const response = await axios.put(URL, {
+            content : content
+        });
+        alert("성공!")
+        console.log(response);
+        
+    } catch(error) {
+        alert("썸띵 에러");
+    }
     
-    
-
     router.push(`/placeDetail/${placeStore.reviewPlaceId}`)
+
 }
 
 
 
 onMounted(() => {
-    if (userStore.loginTF === false) {
-        alert("로그인을 먼저해주세요.");
-        router.replace(`/placeDetail/${placeStore.reviewPlaceId}`)
-    }
-    content.value = router.params.review.content
+    reviewId.value = route.params.reviewId
+    content.value = route.params.content
+    
 })
 
 </script>
