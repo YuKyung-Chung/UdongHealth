@@ -25,7 +25,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ssafy.udong.model.dto.Place;
 import com.ssafy.udong.model.dto.SearchCondition;
-import com.ssafy.udong.model.service.EquipmentService;
 import com.ssafy.udong.model.service.PlaceService;
 
 @RestController
@@ -96,6 +95,19 @@ public class PlaceController {
 		return new ResponseEntity<List<Place>>(list, HttpStatus.OK);
 	}
 	
+	//해시태그로 검색 시 해당하는 운동기구 정보 및 운동장소 보여줌
+	//해당하는 운동기구 몇개씩 있는지 count 해서 보여줌
+	//검색기능
+	@GetMapping("/place/search/{hashtag}")
+	public ResponseEntity<?> search(@PathVariable String hashtag){
+			
+		List<Place> list = placeService.searchByHashtag(hashtag);
+			
+		if(list == null || list.size() == 0) {
+			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<List<Place>>(list, HttpStatus.OK);
+	}
 	
 	//API 호출하여 DB에 저장하는 메서드
     private List<Place> callOpenApi() throws IOException {

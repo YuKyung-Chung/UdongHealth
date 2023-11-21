@@ -22,4 +22,6 @@ public interface PlaceService {
 	//현재 위치에서 가장 가까운 곳 4곳 조회
 	List<Place> findNearPlaces(double latitude, double longitude);
 
+	List<Place> searchByHashtag(String hashtag);
+
 }
