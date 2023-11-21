@@ -4,7 +4,8 @@
         <div>
             <p>{{ place.addressGu + " " + place.addressDong + " " + place.공원명 }}</p>
            <TheReviewList :placeId = "placeId"/>
-            
+           <button type="submit" class="btn btn-primary mb-3" @click.stop.prevent=reviewAdd
+               >리뷰작성</button>
         </div>
     </div>
 </template>
@@ -15,16 +16,25 @@ import { ref, onMounted, toRaw } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import TheReviewList from '@/components/review/TheReviewList.vue';
 import { usePlaceStore } from '../stores/place';
-
+import { useUserStore } from '../stores/user';
 const route = useRoute();
 const router = useRouter();
 const place = ref({});
-const reviews = ref([]);
 const placeId = route.params.placeId;
-const store = usePlaceStore();
-store.setReviewPlaceId(placeId); 
+const placeStore = usePlaceStore();
+const userStore = useUserStore();
+placeStore.setReviewPlaceId(placeId); 
 
+const reviewAdd = () => {
+    if (userStore.loginTF === false) {
+        alert("리뷰 작성을 하려면 로그인을 해주세요")
+        return
+    }
+    else {
+        router.push(`/placeDetail/${placeId}/reviewAdd`)
+    }
 
+}
 
 
 
@@ -115,18 +125,6 @@ onMounted(async () => {
 
 })
 
-function addMarker(position) {
-    // 마커를 생성합니다
-    let marker = new kakao.maps.Marker({
-        position: position
-    });
-
-    // 마커가 지도 위에 표시되도록 설정합니다
-    marker.setMap(map);
-
-    // 생성된 마커를 배열에 추가합니다
-    markers.value.push(marker);
-}
 
 
 </script>

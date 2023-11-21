@@ -1,3 +1,4 @@
+
 <template>
     <div>
         <h2> 리뷰 수정 여기서 할게요</h2>
@@ -27,14 +28,13 @@ const userStore = useUserStore();
 const placeStore = usePlaceStore();
 const content = ref("");
 const route = useRoute();
-const reviewId = ref("");
+const reviewId = ref("");   
 const reviewEdit = async () => {
     const URL = import.meta.env.VITE_APP_API_REVIEW_URL + `/${placeStore.reviewPlaceId}/${reviewId.value}`;
     console.log(URL);
     try {
-        const response = await axios.put(URL, {
-            content : content
-        });
+        const response = await axios.put(URL, content.value
+        );
         alert("성공!")
         console.log(response);
         
@@ -42,7 +42,7 @@ const reviewEdit = async () => {
         alert("썸띵 에러");
     }
     
-    router.push(`/placeDetail/${placeStore.reviewPlaceId}`)
+    router.replace(`/placeDetail/${placeStore.reviewPlaceId}`)
 
 }
 

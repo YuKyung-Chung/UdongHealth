@@ -9,7 +9,7 @@ import KindCore from '@/components/kind/KindCore.vue'
 import PlaceDetailView from '../views/PlaceDetailView.vue'
 import ReviewEditView from '@/components/review/ReviewEditView.vue'
 import TheSignupView from '../views/TheSignupView.vue'
-
+import ReviewAddView from '@/components/review/ReviewAddView.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -35,6 +35,10 @@ const router = createRouter({
       path: '/placeDetail/:placeId',
       name: 'placeDetail',
       component: PlaceDetailView
+    }, {
+      path: '/placeDetail/:placeId/reviewAdd',
+      name: 'reviewAdd',
+      component : ReviewAddView
     },
     {
       path: '/kind',
@@ -61,7 +65,8 @@ const router = createRouter({
       path: '/reviewEdit/:reviewId/:content',
       name: 'reviewEdit',
       component: ReviewEditView,
-    }, {
+    },
+    {
       path: '/signup',
       name: 'signup',
       component: TheSignupView

@@ -1,3 +1,4 @@
+
 <template>
     <div>
         <form>
@@ -14,6 +15,7 @@
 import { ref, onMounted } from 'vue';
 import { usePlaceStore } from '../../stores/place';
 import axios from 'axios';
+import router from '../../router';
 
 const user = ref({});
 const content = ref("");
@@ -21,23 +23,24 @@ const store = usePlaceStore();
 const review = ref({});
 
 const reviewCreate = async () => {
-    review.value = {
-        content: content,
-        placeId: store.reviewPlaceId,
-        userId: user.value.userId,
-        writer: user.value.name,
-
-    }
-    const URL = import.meta.env.VITE_APP_API_URL + `/${store.reviewPlaceId}`
+   
+    const URL = import.meta.env.VITE_APP_API_REVIEW_URL + `/${store.reviewPlaceId}`
+    console.log(URL)
     axios.
-        POST(URL, review.value).then((res) => {
+        post(URL, {
+            userId: user.value.userId,
+            placeId: store.reviewPlaceId,
+            writer: user.value.name,
+            content: content.value,
+        }).then((res) => {
             alert("등록이 완료되었습니다.")
         })
+    router.replace(`/placeDetail/${store.reviewPlaceId}`)
 }
 
-}
 
-store.reviewPlaceId
+
+// store.reviewPlaceId
 
 
 onMounted(() => {
@@ -45,4 +48,4 @@ onMounted(() => {
 })
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped></style>

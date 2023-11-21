@@ -12,6 +12,9 @@
 import { onMounted, ref, toRaw } from 'vue';
 import TheLecList from '../components/common/TheLecList.vue';
 import router from '../router';
+import axios from 'axios'
+
+const lecList = ref([]);
 
 
 let map = null;
@@ -29,7 +32,7 @@ const initMap = function () {
       map.setCenter(myCenter);
     });
   }
-  
+
   const container = document.getElementById('map');
   const options = {
     center: myCenter,
@@ -40,6 +43,15 @@ const initMap = function () {
     map,
     position: myCenter,
   });
+  lecList.value.forEach((lec) => {
+    let otherPosition = new kakao.maps.LatLng(lec.위도, lec.경도);
+      new kakao.maps.Marker({
+      map,
+      position: otherPosition,
+    });
+    
+
+  })
   // const otherPosition = new kakao.maps.LatLng(37.500286, 127.0394029);
   // new kakao.maps.Marker({
   //   map,
@@ -70,7 +82,15 @@ onMounted(() => {
     }); //헤드태그에 추가
     document.head.appendChild(script);
   }
-});
+  const lat = 37.501286;
+  const lon = 127.0396029;
+  const URL = import.meta.env.VITE_APP_API_PLACE_URL + "/find/" + lat + "/" + lon;
+
+  axios.get(URL).then((res) =>
+    lecList.value = res.data).catch((error) => console.log(error));
+
+  
+}); 
 
 const myMarkerPosition = ref([
   [37.501286, 127.0396029],
