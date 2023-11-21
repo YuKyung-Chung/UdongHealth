@@ -42,11 +42,19 @@ public class ReviewServiceImpl implements ReviewService{
 		return reviewDao.deleteReview(reviewId) == 1;
 	}
 
-	//리뷰 수정
+//	//리뷰 수정
+//	@Override
+//	@Transactional
+//	public boolean modifyReview(RevieupdateRevieww review) {
+//		Review r = reviewDao.getOne(review.getReviewId());
+//		return reviewDao.updateReview() > 0;
+//	}
+
 	@Override
-	@Transactional
-	public boolean modifyReview(Review review) {
-		return reviewDao.updateReview(review) > 0;
+	public boolean modifyReview(String content, int reviewId) {
+		
+		return reviewDao.updateReview(content, reviewId);
 	}
+
 
 }
