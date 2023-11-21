@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ssafy.udong.model.dto.Favorites;
+import com.ssafy.udong.model.dto.Place;
 import com.ssafy.udong.model.service.FavoritesService;
 
 @RestController
@@ -39,12 +39,12 @@ public class FavoritesController {
 	@GetMapping("/favorites/{userId}")
 	public ResponseEntity<?> getFavorites(@PathVariable int userId){
 		
-		List<Favorites> list = favoritesService.getList(userId);
+		List<Place> list = favoritesService.getList(userId);
 		
 		if (list == null || list.size() == 0)
 			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 		
-		return new ResponseEntity<List<Favorites>>(list, HttpStatus.OK);
+		return new ResponseEntity<List<Place>>(list, HttpStatus.OK);
 	}
 	
 	//즐겨찾기 삭제

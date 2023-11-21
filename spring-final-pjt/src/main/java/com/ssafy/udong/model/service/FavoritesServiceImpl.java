@@ -1,5 +1,6 @@
 package com.ssafy.udong.model.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import com.ssafy.udong.model.dao.FavoritesDao;
 import com.ssafy.udong.model.dao.PlaceDao;
 import com.ssafy.udong.model.dao.UserDao;
 import com.ssafy.udong.model.dto.Favorites;
+import com.ssafy.udong.model.dto.Place;
 
 @Service
 public class FavoritesServiceImpl implements FavoritesService{
@@ -48,8 +50,14 @@ public class FavoritesServiceImpl implements FavoritesService{
 
 	//즐겨찾기 목록 조회
 	@Override
-	public List<Favorites> getList(int userId) {
-		return favoritesDao.getUserById(userId);
+	public List<Place> getList(int userId) {
+		List<Favorites> list = favoritesDao.getUserById(userId);
+		
+		List<Place> placeList = new ArrayList<Place>();
+		for (Favorites f : list) {
+			placeList.add(placeDao.getPlaceById(f.getPlaceId()));
+		}
+		return placeList;
 	}
 
 	//즐겨찾기 삭제
