@@ -1,45 +1,48 @@
 <template>
     <div class="container">
-        <RouterLink to="/kind">전체</RouterLink>
+        <button type="button" class="btn btn-primary" @click.stop.prevent="handleFitPartClick(`All`)">전체</button>
         |
-        <RouterLink :to="{ path: '/kind/upperBody' }">상체</RouterLink>
+        <button type="button" class="btn btn-primary" @click.stop.prevent="handleFitPartClick(`upperBody`)">상체</button>
         |
-        <RouterLink to="/kind/lowerBody">하체</RouterLink>
+        <button type="button" class="btn btn-primary" @click.stop.prevent="handleFitPartClick(`lowerBody`)">하체</button>
         |
-        <RouterLink to="/kind/core">복부</RouterLink>
+        <button type="button" class="btn btn-primary" @click.stop.prevent="handleFitPartClick(`core`)">복부</button>
         |
-        <RouterView />
     </div>
-    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img :src="`src/${images[0]}`" class="d-block w-100" alt="image">
-            </div>
-            <div class="carousel-item" v-for="(image, index) in pImgs" :key="index">
-                <img :src="`src/${image}`" class="d-block w-100" alt="image">
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
-            data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
-            data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+    <div v-if="fitPart === 'All'">
+      
+        <TheKindCarousel :fitPart="'All'" />
+    </div>
+    <div v-else-if="fitPart === 'upperBody'">
+        <TheKindCarousel :fitPart="'upperBody'" />
+    </div>
+    <div v-else-if="fitPart === 'lowerBody'">
+        <TheKindCarousel :fitPart="'lowerBody'" />
+    </div>
+    <div v-else>
+        <TheKindCarousel :fitPart="'core'" />
     </div>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import _ from 'lodash';
+import {useRouter} from 'vue-router'
+import TheKindCarousel from '../components/common/TheKindCarousel.vue'
+const firstImage = ref({});
+const fitPart = ref("All")
+const images = ref([]);
+const pImgs = ref([]);
 
-const images = ["assets/yhC.png",
-    "assets/ykC.png", "assets/yhC.png", "assets/ykC.png"]
+const handleFitPartClick = (fitname) => {
+    fitPart.value = fitname;
+   
+}   
 
-const pImgs = _.cloneDeep(images).slice(1);
+
+
+
+
 </script>
 
 <style scoped>
