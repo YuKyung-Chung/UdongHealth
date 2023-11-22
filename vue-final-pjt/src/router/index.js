@@ -26,6 +26,7 @@ const router = createRouter({
     },
     {
       path: '/search',
+      redirect: '/search/place',
       name: 'search',
       component: SearchView,
       children: [{
