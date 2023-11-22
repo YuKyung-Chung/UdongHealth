@@ -1,10 +1,20 @@
 <template>
-    <div v-if="favList.length === 0" class="icon-text-container">
-        <i class="bi bi-asterisk sameLine"></i>
-        <p>로그인 부탁드려용~!</p><i class="bi bi-asterisk sameLine"></i>
+    <div v-if="userStore.loginTF === false" class="icon-text-container row" >
+        <h4> 오늘의 운동 상식 </h4>
+        <div v-for="art in arts">
+            
+            <p>{{ art.content}}</p>
+            <p class="writer">{{ art.writer }}</p>
+        </div>
     </div>
-    <div v-else v-for="fav in favList">
-        <h4>{{ fav.placeId }}</h4>
+    <div v-else>
+        <div v-if="favList.length ===0">
+            <p>아직 찜 목록이 없습니다.</p>
+        </div>
+        <div v-else v-for="fav in favList">
+            <h4>{{ fav.placeId }}</h4>
+        </div>
+
     </div>
 </template>
 
@@ -12,10 +22,18 @@
 import { ref, watch } from 'vue'
 import { useUserStore } from '../../stores/user';
 import axios from 'axios';
-import router from '../../router';  
+import router from '../../router';
 const userStore = useUserStore();
 const favList = ref([]);
 const user = ref({});
+const arts = [{
+    writer : "SSAFY",
+    content : "복식 호흡의 중요성 알고 계신가요?...",
+
+}, {
+    writer : "조용환",
+    content : "무료 헬스장 100배 즐기기",
+}]
 
 
 watch([() => userStore.loginTF, () => userStore.addFavTF], async () => {
@@ -53,5 +71,12 @@ watch([() => userStore.loginTF, () => userStore.addFavTF], async () => {
 .icon-text-container {
     display: flex;
     align-items: center;
+}
+p {
+    margin-bottom : 4px
+}
+.writer {
+    font-weight : 700;
+    color : #1E88E5 
 }
 </style>

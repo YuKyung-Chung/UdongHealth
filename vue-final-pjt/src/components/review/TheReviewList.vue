@@ -55,6 +55,7 @@ const goReviewDelete = async (review) => {
             URL = import.meta.env.VITE_APP_API_REVIEW_URL + "/" + route.params.placeId
             response = await axios.get(URL);
             reviews.value = response.data;
+            alert("삭제 완료되었습니다.")
         } catch (error) {
             console.log(error);
         }
