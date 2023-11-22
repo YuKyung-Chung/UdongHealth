@@ -25,16 +25,18 @@ const review = ref({});
 const reviewCreate = async () => {
    
     const URL = import.meta.env.VITE_APP_API_REVIEW_URL + `/${store.reviewPlaceId}`
-    console.log(URL)
-    axios.
-        post(URL, {
+    console.log(URL);
+    try {
+        const response = await axios.post(URL, {
             userId: user.value.userId,
             placeId: store.reviewPlaceId,
             writer: user.value.name,
             content: content.value,
-        }).then((res) => {
-            alert("등록이 완료되었습니다.")
         })
+    } catch(error) {
+        console.log(error);
+    }
+    
     router.replace(`/placeDetail/${store.reviewPlaceId}`)
 }
 

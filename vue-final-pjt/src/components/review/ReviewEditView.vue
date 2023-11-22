@@ -36,7 +36,6 @@ const reviewEdit = async () => {
         const response = await axios.put(URL, content.value
         );
         alert("성공!")
-        console.log(response);
         
     } catch(error) {
         alert("썸띵 에러");

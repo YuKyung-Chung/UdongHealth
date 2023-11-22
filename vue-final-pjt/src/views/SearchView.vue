@@ -130,4 +130,8 @@ h3{
     font-family: 'Pretendard-Regular';
     font-weight: 800;
 }
+.btn-success {
+    background-color : #2D7E32;
+    border-color : #2D7E32;
+}
 </style>
