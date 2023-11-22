@@ -1,5 +1,5 @@
 <template>
-    <div class="footer">
+    <div class="text-center">
         <p>© Copyright to SSAFY 10th 서울 7반 조용환, 정유경</p>
     </div>
 </template>
@@ -9,9 +9,8 @@
 </script>
 
 <style scoped>
-.footer {
+div {
     color: whitesmoke;
-    text-align: center;
     background-color: #67BA6A;
 }
 </style>

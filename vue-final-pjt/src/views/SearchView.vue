@@ -7,11 +7,11 @@
     <div v-if="placeStore.fitSearchTF ===false">
         <h3>일반 검색 결과</h3>
         <table border="1">
-            <th>지역구</th>
-            <th>동</th>
-            <th>상세주소</th>
-            <th>상세보기</th>
-            <th>찜버튼</th>
+            <th class="text-center">지역구</th>
+            <th class="text-center">동</th>
+            <th class="text-center">상세주소</th>
+            <th class="text-center">상세보기</th>
+            <th class="text-center">찜버튼</th>
             <tr v-for="place in placeStore.limitStores.value" :key="place.placeId">
                 <td>{{ place.addressGu }}</td>
                 <td>{{ place.addressDong }}</td>
@@ -24,21 +24,21 @@
     <div v-else>
         <h3>부위({{ placeStore.fitSearchName }}) 검색 결과</h3>
         <table border="1">
-            <th>지역구</th>
-            <th>동</th>
-            <th>공원명</th>
-            <th>해당 운동기구 종류 수</th>
-            <th>설치운동기구 종류</th>
-            <th>상세보기</th>
-            <th>찜버튼</th>
+            <th class="text-center">지역구</th>
+            <th class="text-center">동</th>
+            <th class="text-center">공원명</th>
+            <th class="text-center">해당 운동기구 종류 수</th>
+            <th class="text-center">설치운동기구 종류</th>
+            <th class="text-center">상세보기</th>
+            <th class="text-center">찜버튼</th>
             <tr v-for="place in placeStore.searchPlaces.value" :key="place.placeId">
                 <td>{{ place.addressGu }}</td>
                 <td>{{ place.addressDong }}</td>
                 <td>{{ place.공원명 }}</td>
-                <td>{{ place.cnt }}</td>
-                <td>{{ place.설치운동기구종류 }}</td>
-                <td><button @click="goDetail(place.placeId)" :placeId="place.placeId">상세보기</button></td>
-                <td><button @click.stop.prevent=addFav(place.placeId)>찜 등록</button></td>
+                <td class="text-center">{{ place.cnt }}</td>
+                <td >{{ place.설치운동기구종류 }}</td>
+                <td class="text-center"><button @click="goDetail(place.placeId)" :placeId="place.placeId">상세보기</button></td>
+                <td class="text-center"><button @click.stop.prevent=addFav(place.placeId)>찜 등록</button></td>
             </tr>
         </table>
 
