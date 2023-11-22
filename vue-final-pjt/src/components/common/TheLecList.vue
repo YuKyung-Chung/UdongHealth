@@ -1,6 +1,9 @@
 <template>
-    <div v-for="lec in lecList" :key=lec.placeId>
-        <RouterLink :to="{ path: `/placeDetail/${lec.placeId}`}" > {{lec.공원명}} </RouterLink>
+    <div>
+        <div v-for="lec in lecList" :key=lec.placeId>
+            <RouterLink :to="{ path: `/placeDetail/${lec.placeId}`}" > {{lec.공원명}} </RouterLink>
+        </div>
+        
     </div>
 </template>
 
