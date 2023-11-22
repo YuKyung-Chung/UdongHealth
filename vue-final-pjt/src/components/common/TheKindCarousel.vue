@@ -1,12 +1,12 @@
 <template>
     <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active ">
-                <img :src="`src/${firstImage.src}`" class="d-block" alt="image" width="600">
+        <div class="carousel-inner text-center ">
+            <div class="carousel-item active justify-content-center">
+                <img :src="`src/${firstImage.src}`" alt="image" width="500">
                 <h2>{{ firstImage.alt }}</h2>
             </div>
-            <div class="carousel-item" v-for="(image, index) in pImgs" :key="image.alt">
-                <img :src="`src/${image.src}`" class="d-block" width="600" :alt="`${image.alt}`">
+            <div class="carousel-item justify-content-center" v-for="(image, index) in pImgs" :key="image.alt">
+                <img :src="`src/${image.src}`" width="500" :alt="`${image.alt}`">
                 <h2>{{ image.alt }}</h2>
             </div>
         </div>
