@@ -1,20 +1,25 @@
 <template>
     <div>
-        <table border="1">
-            <th>작성자</th>
-            <th>내용</th>
-            <th>조회수</th>
-            <th></th>
-            <th></th>
+        <table class="table" border="1">
+            <thead>
+                <tr>
+                    <th>작성자</th>
+                    <th>내용</th>
+                    <th>조회수</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                <tr v-for="review in reviews" :key="review.reviewId">
+                    <td>{{ review.writer }}</td>
+                    <td>{{ review.content }}</td>
+                    <td>{{ review.viewCnt }}</td>
 
-            <tr v-for="review in reviews" :key="review.reviewId">
-                <td>{{ review.writer }}</td>
-                <td>{{ review.content }}</td>
-                <td>{{ review.viewCnt }}</td>
-
-                <td><button @click="goReviewEdit(review)" :reviewId="review.reviewId">수정</button></td>
-                <td><button @click="goReviewDelete(review)" :reviewId="review.reviewId">삭제</button></td>
-            </tr>
+                    <td><button class="btn btn-success" @click="goReviewEdit(review)" :reviewId="review.reviewId">수정</button></td>
+                    <td><button class="btn btn-danger" @click="goReviewDelete(review)" :reviewId="review.reviewId">삭제</button></td>
+                </tr>
+            </tbody>
         </table>
     </div>
 </template>
@@ -72,4 +77,9 @@ onMounted(async () => {
 
 </script>
 
-<style scoped></style>
+<style scoped>
+.btn-success {
+    background-color : #2D7E32;
+    border-color : #2D7E32;
+}
+</style>
