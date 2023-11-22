@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="mapContainer">
         <div id="map2"></div>
         <div>
             <p>{{ place.addressGu + " " + place.addressDong + " " + place.공원명 }}</p>
@@ -135,7 +135,7 @@ onMounted(async () => {
     height: 70vh;
 }
 
-.container {
+.mapContainer {
     display: flex;
 }
 </style>

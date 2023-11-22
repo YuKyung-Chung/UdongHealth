@@ -1,9 +1,12 @@
 <template>
   <div class="container">
-    <div id="map"></div>
-    <div>
-      <h2>추천 주변 무료 헬스장</h2>
-      <TheLecList />
+    <div class="mapContainer">
+      <div id="map"></div>
+      <div>
+        <h2>추천 주변 무료 헬스장</h2>
+        <TheLecList />
+      </div>
+
     </div>
   </div>
 </template>
@@ -133,7 +136,9 @@ const displayMarker = function (markerPositions) {
 }
 
 .container {
-  display: flex;
   height: 90vh;
+}
+.mapContainer {
+  display: flex;
 }
 </style>
