@@ -5,6 +5,8 @@ USE udong_health;
 
 CREATE TABLE if not exists `place` (
 	place_id INT AUTO_INCREMENT,
+    hashtag VARCHAR(20),
+    cnt INT DEFAULT 0,
     place_name VARCHAR(20) NOT NULL,
     eq_year VARCHAR(10),
     address VARCHAR(50) NOT NULL,
@@ -57,57 +59,6 @@ CREATE TABLE if not exists `favorites` (
     FOREIGN KEY (place_id) REFERENCES `place` (place_id)
 ) ENGINE=InnoDB DEFAULT CHARACTER SET = utf8mb4;
 
-CREATE TABLE if not exists `hashtag` (
-	hashtag_id INT AUTO_INCREMENT,
-    hashtag VARCHAR(20) NOT NULL,
-    PRIMARY KEY(hashtag_id)
-) ENGINE=InnoDB DEFAULT CHARACTER SET = utf8mb4;
-
-CREATE TABLE if not exists `equipment` (
-	eq_id INT AUTO_INCREMENT,
-    hashtag_id INT NOT NULL,
-    eq_div VARCHAR(20),
-	eq_name VARCHAR(50),
-    PRIMARY KEY(eq_id),
-	FOREIGN KEY (hashtag_id) REFERENCES `hashtag` (hashtag_id)
-) ENGINE=InnoDB DEFAULT CHARACTER SET = utf8mb4;
-
--- 데이터 삽입
-INSERT INTO hashtag(hashtag)
-VALUES('온몸'),('상체'),('허리'),('가슴'),('배'),('어깨'),('등'),
-('팔'),('하체'),('지구력'),('웨이트'),('유산소'),('스트레칭'),('유연성'),('기타');
-
-select * from hashtag;
-
-
--- ('상체'),('허리'),('가슴'),('배'),('어깨'),('등'),
--- ('팔'),('하체'),('지구력'),('웨이트'),('유산소'),('스트레칭'),('유연성'),('기타');
-
--- ('상체','["상체"]'),
--- ('허리','["허리","옆"]'),
--- ('가슴','["가슴","바스트"]'),
--- ('배','["뱃살","배","복근"]'),
--- ('어깨','["어깨","숄더"]'),
--- ('등','["등"]'),
--- ('팔','["양팔","팔","암"]'),
--- ('하체','["다리","레그","하체","발"]'),
--- ('지구력','["철봉","봉","턱걸이","매달리기","노젓기"]'),
--- ('웨이트','["웨이트","역기","당기기","프레스"]'),
--- ('유산소','["달리기","런닝","마라톤","조깅","유산소","걷기","워킹","워크","워커","스탭","사이클","싸이클","자전거"]'),
--- ('스트레칭','["지압","안마","마사지","풀기","스트레칭"]'),
--- ('유연성','["유연성","돌리기","트위스트","스윙","롤링"]'),
--- ('기타','[]');
-
--- 계산된 값 업데이트
--- UPDATE equipment
--- SET eq_div_count = (SELECT COUNT(*) FROM JSON_TABLE(eq_div, '$[*]' COLUMNS(cnt FOR ORDINALITY)) AS eq_div_count);
-
--- 데이터 검색
--- SELECT *
--- FROM equipment
--- WHERE eq_div LIKE '%몸%';
-
-
 
 SELECT *
 FROM place
@@ -132,5 +83,4 @@ commit;
 SELECT * FROM place;
 SELECT * FROM user;
 SELECT * FROM review;
-SELECT * FROM equipment;
 SELECT * FROM favorites;
