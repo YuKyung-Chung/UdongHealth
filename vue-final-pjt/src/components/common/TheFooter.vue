@@ -1,6 +1,6 @@
 <template>
     <div class="footer">
-        <h3>footer</h3>
+        <p>© Copyright to SSAFY 10th 서울 7반 조용환, 정유경</p>
     </div>
 </template>
 
@@ -10,8 +10,8 @@
 
 <style scoped>
 .footer {
-    color: #0C48A1;
+    color: whitesmoke;
     text-align: center;
-    background-color: #BBDEFB;
+    background-color: #67BA6A;
 }
 </style>
