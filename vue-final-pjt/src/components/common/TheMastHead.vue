@@ -1,17 +1,17 @@
 <template>
-    <!-- Masthead-->
-    <header class="masthead">
-        <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
-            <div class="d-flex justify-content-center">
-                <div class="text-center">
-                    <h1 class="mx-auto my-0 text-uppercase">우리 동네 무료 헬스장</h1>
-                    <h2 class="text-white-50 mx-auto mt-2 mb-5">근처에 이용할 수 있는 운동시설 조회하고 리뷰를 공유하세요.</h2>
-                    <button class="btn btn-primary" @click="goToHome">근처 둘러보기</button>
-                    
-                </div>
-            </div>
+  <!-- Masthead-->
+  <header class="masthead">
+    <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
+      <div class="d-flex justify-content-center">
+        <div class="text-center">
+          <h1 class="mx-auto my-0 text-uppercase">우리 동네 무료 헬스장</h1>
+          <h2 class="text-white-50 mx-auto mt-2 mb-5">근처에 이용할 수 있는 운동시설 조회하고 리뷰를 공유하세요.</h2>
+          <button class="btn btn-primary" @click="goToHome">근처 둘러보기</button>
+
         </div>
-    </header>
+      </div>
+    </div>
+  </header>
 </template>
 
 <script setup>
@@ -42,83 +42,98 @@ const goToHome = () => {
   background-size: cover;
   z-index: 2;
 }
-.masthead h1{
+
+.masthead h1 {
   font-family: "JalnanGothic";
   font-size: 40px;
   line-height: 3rem;
   background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-          background-clip: text;
+  background-clip: text;
 }
-.masthead h2, .masthead .h2 {
+
+.masthead h2,
+.masthead .h2 {
   max-width: 20rem;
   font-size: 1rem;
   font-family: "Pretendard-Regular";
 }
+
 @media (min-width: 768px) {
-  .masthead h1, .masthead .h1 {
+
+  .masthead h1,
+  .masthead .h1 {
     font-size: 4rem;
     line-height: 4rem;
   }
 }
+
 @media (min-width: 992px) {
   .masthead {
     height: 100vh;
     padding: 0;
   }
-  .masthead h1, .masthead .h1 {
+
+  .masthead h1,
+  .masthead .h1 {
     font-size: 90px;
     line-height: 6.5rem;
   }
-  .masthead h2, .masthead .h2 {
+
+  .masthead h2,
+  .masthead .h2 {
     max-width: 30rem;
     font-size: 1.25rem;
   }
 }
 
-.navbar{
-    flex:content;
+.navbar {
+  flex: content;
 }
+
 .main-container {
-    color:whitesmoke;
-    font-family: 'Pretendard-Regular';
+  color: whitesmoke;
+  font-family: 'Pretendard-Regular';
 }
 
-.logo{
-    display: flex;
-    align-items: center;
-    margin: 10px;
+.logo {
+  display: flex;
+  align-items: center;
+  margin: 10px;
 }
 
-img{
-    margin-right: 10px;
+img {
+  margin-right: 10px;
 }
 
 
 .nav-container {
-    /* margin-left: auto; */
-    font-weight: 700;
-    /* align-items: end; */
+  /* margin-left: auto; */
+  font-weight: 700;
+  /* align-items: end; */
 }
 
-.title{
-    font-weight: 700;
-    font-size: 25px;
-    text-align: left;
+.title {
+  font-weight: 700;
+  font-size: 25px;
+  text-align: left;
 }
 
 a {
-    font-family: 'Pretendard-Regular';
-    text-decoration-line: none;
-    color: whitesmoke;
+  font-family: 'Pretendard-Regular';
+  text-decoration-line: none;
+  color: whitesmoke;
 }
 
+.btn-primary {
+  background-color: #2D7E32;
+  border-color: #2D7E32;
+}
 
 .mainTitle {
-    margin-top: 30px;
-    display : inline-block;
-    background: linear-gradient(to top, #54ddff 20%, transparent 30%);
-    font-family: 'JalnanGothic';
-}
-</style>
+  margin-top: 30px;
+  display: inline-block;
+  background: linear-gradient(to top, #54ddff 20%, transparent 30%);
+  font-family: 'JalnanGothic';
+}</style>

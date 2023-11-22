@@ -49,7 +49,7 @@
                         <td>{{ place.addressDong }}</td>
                         <td>{{ place.공원명 }}</td>
                         <td class="text-center">{{ place.cnt }}</td>
-                        <td>{{ place.설치운동기구종류 }}</td>
+                        <td class="text-truncate">{{ place.설치운동기구종류 }}</td>
                         <td class="text-center"><button class="btn btn-primary" @click="goDetail(place.placeId)" :placeId="place.placeId">상세보기</button>
                         </td>
                         <td class="text-center"><button class="btn btn-success"  @click.stop.prevent=addFav(place.placeId)>등록하기</button></td>

@@ -16,7 +16,13 @@ const handleImageClick = async(index) => {
     const URL = import.meta.env.VITE_APP_API_PLACE_URL + `/search/${images[index].alt}`
     const response = await axios.get(URL);
     placeStore.fitSearchName = images[index].alt;
-    placeStore.searchPlaces.value = response.data
+    placeStore.searchPlaces.value = response.data;
+    placeStore.searchPlaces.value.forEach(item => {
+    if (item.설치운동기구종류 && item.설치운동기구종류.length > 20) {
+        // 만약 kind 속성의 길이가 20을 초과하면 20자로 자름
+        item.설치운동기구종류 = item.설치운동기구종류.slice(0, 22) + "...";
+    }
+});
 }
 
 const images = [{

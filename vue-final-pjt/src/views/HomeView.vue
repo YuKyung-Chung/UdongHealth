@@ -3,7 +3,6 @@
     <div class="mapContainer">
       <div id="map"></div>
       <div>
-        <h2>추천 주변 무료 헬스장</h2>
         <TheLecList />
       </div>
 
