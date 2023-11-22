@@ -1,29 +1,32 @@
 <template>
   <div>
-    <header>
-      <TheHeaderNav />
-    </header>
-    <main class="container">
-      <div class="row">
-        <section class="col-9">
+    <div id="wrapper">
+      <header>
+        <TheHeaderNav />
+      </header>
+      <main class="container-fluid">
+        <div class="row">
+          <section class="col-9">
 
-          <RouterView />
-        </section>
-        <aside class="col-3">
-          <div v-if="$route.path !== '/signup'">
-            <div v-if="store.loginTF === false">
-              <LoginForm />
+            <RouterView />
+          </section>
+          <aside class="col-3">
+            <div v-if="$route.path !== '/signup'">
+              <div v-if="store.loginTF === false">
+                <LoginForm />
+              </div>
+              <div v-else>
+                <SigninForm />
+              </div>
+              <TheFavList />
+
             </div>
-            <div v-else>
-              <SigninForm />
-            </div>
-            <TheFavList />
 
-          </div>
+          </aside>
+        </div>
+      </main>
 
-        </aside>
-      </div>
-    </main>
+    </div>
     <footer>
       <TheFooter />
     </footer>
@@ -38,9 +41,8 @@ import LoginForm from "./components/common/TheLoginForm.vue";
 import TheFavList from "./components/common/TheFavList.vue";
 import { useUserStore } from './stores/user'
 import SigninForm from "./components/common/TheSigninForm.vue";
-import { onBeforeUnmount, onMounted, ref,  } from "vue";
+import { onMounted, ref, } from "vue";
 
-const user = ref({});
 
 
 const store = useUserStore();
@@ -57,23 +59,35 @@ onMounted(() => {
 
 <style scoped>
 @font-face {
-    font-family: 'EASTARJET-Medium';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/EASTARJET-Medium.woff2') format('woff2');
-    font-weight: 500;
-    font-style: normal;
+  font-family: 'EASTARJET-Medium';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/EASTARJET-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'JalnanGothic';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/JalnanGothic.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'JalnanGothic';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/JalnanGothic.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'Pretendard-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
+  font-family: 'Pretendard-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+#wrapper {
+  height: auto;
+  min-height: 100%;
+  padding-bottom: 0;
+}
+
+footer {
+  height: 0;
+  position: relative;
+  transform: translateY(-100%);
 }
 </style>

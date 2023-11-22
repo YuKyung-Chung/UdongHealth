@@ -47,7 +47,7 @@ watch([() => userStore.loginTF, () => userStore.addFavTF], async () => {
 
 <style scoped>
 .sameLine {
-    color: red;
+    color: black;
 }
 
 .icon-text-container {
