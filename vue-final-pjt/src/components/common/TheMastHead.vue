@@ -40,6 +40,7 @@ const goToHome = () => {
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-size: cover;
+  z-index: 2;
 }
 .masthead h1{
   font-family: "JalnanGothic";

@@ -136,7 +136,7 @@ const displayMarker = function (markerPositions) {
 }
 
 .container {
-  height: 90vh;
+  height: 80vh;
 }
 .mapContainer {
   display: flex;

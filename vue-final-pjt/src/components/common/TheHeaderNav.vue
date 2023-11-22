@@ -1,7 +1,7 @@
 <template>
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-        <div class="container px-2 px-lg-2">
+        <div class="container px-2 px-lg-2 zNav">
             <div class="logo">
                 <RouterLink to="/"> <img src="@/assets/logo.png" alt="Logo" width="50" height="50"
                         class="d-inline-block align-text-top">
@@ -59,6 +59,7 @@ onMounted(() => {
 #mainNav{
     background-color: #67BA6A;
     background: linear-gradient(to center, #A6D7A7 10%, #449F47 50%);
+    z-index : 1;
 }
 
 #navbarResponsive{
@@ -79,6 +80,11 @@ img {
     font-size: 25px;
     text-align: left;
 }
+.zNav {
+    z-index : 3;
+}
+
+
 
 a {
     text-decoration-line: none;
