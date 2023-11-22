@@ -8,7 +8,7 @@
                 <TheMastHead/>
         </div>
       <main class="container-fluid">
-        <div class="row">
+        <div class="row rowSection">
           <section class="col-9" id="rootSection">
 
             <RouterView />
@@ -93,7 +93,9 @@ onMounted(() => {
   padding-bottom: 0;
 }
 
-
+.rowSection {
+  margin-top: 20vh;
+}
 footer {
   height: 0;
   position: relative;
