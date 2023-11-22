@@ -3,14 +3,23 @@
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
         <div class="container px-2 px-lg-2">
             <div class="logo">
-                <img src="@/assets/logo.png" alt="Logo" width="50" height="50" class="d-inline-block align-text-top">
-                <h1 class="title">UDFH</h1>
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                        Menu
+                <RouterLink to="/"> <img src="@/assets/logo.png" alt="Logo" width="50" height="50"
+                        class="d-inline-block align-text-top">
+                </RouterLink>
+
+
+                <RouterLink to="/">
+                    <h1 class="title">UDFH</h1>
+                </RouterLink>
+
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    Menu
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
-            
+
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
@@ -47,18 +56,17 @@ onMounted(() => {
 </script>
 
 <style  scoped>
-
-.logo{
+.logo {
     display: flex;
     align-items: center;
     margin: 10px;
 }
 
-img{
+img {
     margin-right: 10px;
 }
 
-.title{
+.title {
     font-weight: 700;
     font-size: 25px;
     text-align: left;
@@ -68,5 +76,4 @@ a {
     text-decoration-line: none;
     color: black;
 }
-
 </style>

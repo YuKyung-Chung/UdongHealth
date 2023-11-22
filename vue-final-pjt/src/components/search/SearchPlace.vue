@@ -44,8 +44,8 @@ const searchPlace = async () => {
             }
 
         })
-        placeStore.searchPlaces.value = response.data;
-        console.log(placeStore.searchPlaces.value);
+        placeStore.limitStores.value = response.data;
+        console.log(placeStore.limitStores.value);
         keyword.value = "";
     }
     catch (error) {
