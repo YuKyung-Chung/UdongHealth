@@ -10,6 +10,8 @@ import PlaceDetailView from '../views/PlaceDetailView.vue'
 import ReviewEditView from '@/components/review/ReviewEditView.vue'
 import TheSignupView from '../views/TheSignupView.vue'
 import ReviewAddView from '@/components/review/ReviewAddView.vue'
+import SearchPlace from '@/components/search/SearchPlace.vue'
+import SearchFit from '@/components/search/SearchFit.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -30,6 +32,13 @@ const router = createRouter({
       path: '/search',
       name: 'search',
       component: SearchView,
+      children: [{
+        path: '/search/place',
+        component: SearchPlace,
+      }, {
+        path: '/search/fit',
+        component: SearchFit
+      }]
     },
     {
       path: '/placeDetail/:placeId',
