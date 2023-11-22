@@ -9,10 +9,10 @@
 </template>
 
 <script setup>
-import { ref, watch, watchEffect } from 'vue'
+import { ref, watch } from 'vue'
 import { useUserStore } from '../../stores/user';
 import axios from 'axios';
-import router from '../../router';
+import router from '../../router';  
 const userStore = useUserStore();
 const favList = ref([]);
 const user = ref({});
