@@ -1,6 +1,8 @@
 package com.ssafy.udong.model.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -158,6 +160,16 @@ public class PlaceServiceImpl implements PlaceService {
 
 			filteredList.add(tmp);
 		}
+		
+		// filteredList를 cnt가 큰 순서대로 정렬
+		Collections.sort(filteredList, new Comparator<Place>() {
+		    @Override
+		    public int compare(Place place1, Place place2) {
+		        return Integer.compare(place2.getCnt(), place1.getCnt());
+		    }
+		});
+
+		// 정렬된 filteredList 반환		
 		return filteredList;
 
 	} // findFitPartList
