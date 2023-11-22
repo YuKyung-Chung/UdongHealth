@@ -42,7 +42,6 @@
                 <td class="text-center"><button @click.stop.prevent=addFav(place.placeId)>찜 등록</button></td>
             </tr>
         </table>
-
     </div>
 </template>
 <script setup>
@@ -98,4 +97,13 @@ onMounted(async () => {
 
 </script>
 
-<style scoped></style>
+<style scoped>
+.searchSection a{
+    text-decoration-line: none;
+    color: black;
+}
+
+table{
+    text-align: center;
+}
+</style>
