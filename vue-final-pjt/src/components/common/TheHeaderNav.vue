@@ -1,12 +1,18 @@
 <template>
-    <div class="main-container">
-        <nav class="navbar navbar-expand-lg" style="background-color: #67BA6A">
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+        <div class="container px-2 px-lg-2">
             <div class="logo">
                 <img src="@/assets/logo.png" alt="Logo" width="50" height="50" class="d-inline-block align-text-top">
-                <h1 class="title" >우리 동네 무료 헬스장</h1>
+                <h1 class="title">UDFH</h1>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                        Menu
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
-            <div class="nav-container">
-                <ul class="nav nav-underline">
+            
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <RouterLink to="/" class="nav-link">Home</RouterLink>
                     </li>
@@ -21,13 +27,14 @@
                     </li>
                 </ul>
             </div>
-        </nav> 
-    </div>
+        </div>
+    </nav>
 </template>
 
 <script setup>
 import { onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+import TheMastHead from './TheMastHead.vue';
 
 
 const router = useRouter();
@@ -36,13 +43,10 @@ onMounted(() => {
     router.replace("/");
 })
 
+
 </script>
 
 <style  scoped>
-.main-container {
-    color:whitesmoke;
-    font-family: 'Pretendard-Regular';
-}
 
 .logo{
     display: flex;
@@ -54,12 +58,6 @@ img{
     margin-right: 10px;
 }
 
-
-.nav-container {
-    margin-left: auto;
-    font-weight: 700;
-}
-
 .title{
     font-weight: 700;
     font-size: 25px;
@@ -68,14 +66,7 @@ img{
 
 a {
     text-decoration-line: none;
-    color: whitesmoke;
+    color: black;
 }
 
-
-.mainTitle {
-    margin-top: 30px;
-    display : inline-block;
-    background: linear-gradient(to top, #54ddff 20%, transparent 30%);
-    font-family: 'JalnanGothic';
-}
 </style>
