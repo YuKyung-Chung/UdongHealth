@@ -12,7 +12,36 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from 'vue'
+import { usePlaceStore } from '../../stores/place';
+import axios from 'axios'
 
+const placeStore = usePlaceStore();
+const keyword = ref("");
+const searchCondition = ref("place_name");
+
+const searchPlace = async () => {
+    const URL = import.meta.env.VITE_APP_API_PLACE_URL + "/search";
+    console.log(URL);
+    console.log(keyword.value);
+    console.log(searchCondition.value);
+    try {
+        const response = await axios.get(URL, {
+            params: {
+                key: searchCondition.value,
+                word: keyword.value,
+            }
+
+        })
+        placeStore.searchPlaces.value = response.data;
+        console.log(placeStore.searchPlaces.value);
+        keyword.value = "";
+    }
+    catch (error) {
+        console.log(error);
+
+    }
+}   
 </script>
 
 <style scoped></style>

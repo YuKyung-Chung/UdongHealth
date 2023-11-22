@@ -1,25 +1,16 @@
 <template>
-    <form class="col">
-        <!-- <RouterView/> -->
-        <div class="row-auto">
-            <label for="search">Search</label>
-            <input type="text" class="form-control" id="search" v-model="keyword" placeholder="키워드를 쓰시오.">
-        </div>
-        <input type="radio" v-model="searchCondition" value="place_name" checked>공원이름
-        <input type="radio" v-model="searchCondition" value="address_dong">지역(동)
-        <input type="radio" v-model="searchCondition" value="fitPart">(운동부위)
-        <!-- <RouterLink to="/search/search">일반 검색</RouterLink>
-        <RouterLink to="/search/fit">부위 검색</RouterLink> -->
-        <div class="row-auto">
-            <button type="submit" class="btn btn-primary mb-3" @keyup.enter.stop.prevent=searchPlace @click.stop.prevent=searchPlace>검색</button>
-        </div>
-    </form>
+    <RouterLink to="/search/place">일반 검색</RouterLink>
+    <RouterLink to="/search/fit">부위 검색</RouterLink>
+    <RouterView />
+    
+    
+    <h2>여기는 항상 실행됩니다.</h2>
     <table border="1">
         <th>지역구</th>
         <th>동</th>
         <th>상세주소</th>
         <th>찜버튼</th>
-        <tr v-for="place in limitPlace" :key="place.placeId">
+        <tr v-for="place in placeStore.searchPlaces.value" :key="place.placeId">
             <td>{{ place.addressGu }}</td>
             <td>{{ place.addressDong }}</td>
             <td>{{ place.addressDetail }}</td>
@@ -37,36 +28,14 @@ import { useUserStore } from '../stores/user';
 import axios from 'axios';
 const userStore = useUserStore();
 const placeStore = usePlaceStore();
-const limitPlace = ref([]);
+
 const router = useRouter();
 const user = ref({});
-const keyword = ref("");
-const searchCondition = ref("place_name");
+
 const goDetail = (placeId) => {
     router.push({ name: 'placeDetail', params: { placeId: placeId } })
 }
-const searchPlace = async() => {
-    const URL = import.meta.env.VITE_APP_API_PLACE_URL +"/search";
-    console.log(URL);
-    console.log(keyword.value);
-    console.log(searchCondition.value);
-    try {
-        const response = await axios.get(URL, {
-            params: {
-                key : searchCondition.value,
-                word : keyword.value,
-            }
-      
-        })
-        limitPlace.value = response.data;
-        console.log(response.data);
-        keyword.value = "";
-    }
-    catch (error){
-        console.log(error);
 
-    }
-}   
 
 
 
@@ -75,7 +44,7 @@ const addFav = async (placeId) => {
         alert("찜 기능을 사용할려면 로그인 해주세요")
         return;
     }
-    const URL = import.meta.env.VITE_APP_API_FAVORITES_URL + `/${user.value.userId}/${placeId}` 
+    const URL = import.meta.env.VITE_APP_API_FAVORITES_URL + `/${user.value.userId}/${placeId}`
 
     try {
         const response = axios.post(URL)
@@ -90,16 +59,14 @@ const addFav = async (placeId) => {
 }
 
 
-
-
-
 onMounted(async () => {
+    router.push("/search/place")
     await placeStore.getPlaces();
     if (placeStore.places.length >= 20) {
-        limitPlace.value = placeStore.places.slice(0, 20);
+        placeStore.searchPlaces.value = placeStore.places.slice(0, 20);
 
     } else {
-        limitPlace.value = placeStore.places;
+        placeStore.searchPlaces.value = placeStore.places;
     }
     user.value = JSON.parse(sessionStorage.getItem("user"));
 

@@ -5,7 +5,7 @@ export const usePlaceStore = defineStore('place', () => {
 
     const reviewPlaceId = ref(-1);
     const places = ref([]);
-
+    const searchPlaces =ref([]);
     const getPlaces = async () => {
         try {
             const URL = import.meta.env.VITE_APP_API_PLACE_URL;
@@ -22,5 +22,5 @@ export const usePlaceStore = defineStore('place', () => {
 
 
 
-    return { places, getPlaces, reviewPlaceId, setReviewPlaceId}
+    return { places, getPlaces, reviewPlaceId, searchPlaces, setReviewPlaceId}
 })
