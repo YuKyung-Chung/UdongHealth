@@ -42,6 +42,10 @@ const searchPlace = async () => {
 
     }
 }   
+
+onMounted (() => {
+    placeStore.fitSearchTF = false;
+})
 </script>
 
 <style scoped></style>

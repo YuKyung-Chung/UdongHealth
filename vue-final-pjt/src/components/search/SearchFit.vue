@@ -12,8 +12,10 @@ import axios from 'axios';
 const placeStore = usePlaceStore();
 
 const handleImageClick = async(index) => {
+    placeStore.fitSearchTF = true;
     const URL = import.meta.env.VITE_APP_API_PLACE_URL + `/search/${images[index].alt}`
     const response = await axios.get(URL);
+    placeStore.fitSearchName = images[index].alt;
     placeStore.searchPlaces.value = response.data
 }
 
