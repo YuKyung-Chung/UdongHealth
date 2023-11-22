@@ -1,47 +1,62 @@
 <template>
-    <RouterLink to="/search/place">일반 검색</RouterLink>
-    <RouterLink to="/search/fit">부위 검색</RouterLink>
-    <RouterView />
+    <div class="container">
+        <div class="nav nav-underline" id="search-nav">
+            <RouterLink class="nav-link" to="/search/place">일반 검색</RouterLink>
+            <RouterLink class="nav-link" to="/search/fit">부위 검색</RouterLink>
+            <RouterView />
+        </div>
 
-
-    <div v-if="placeStore.fitSearchTF === false">
-        <h3>일반 검색 결과</h3>
-        <table border="1">
-            <th class="text-center">지역구</th>
-            <th class="text-center">동</th>
-            <th class="text-center">상세주소</th>
-            <th class="text-center">상세보기</th>
-            <th class="text-center">찜버튼</th>
-            <tr v-for="place in placeStore.limitStores.value" :key="place.placeId">
-                <td>{{ place.addressGu }}</td>
-                <td>{{ place.addressDong }}</td>
-                <td>{{ place.addressDetail }}</td>
-                <td><button @click="goDetail(place.placeId)" :placeId="place.placeId">상세보기</button></td>
-                <td><button @click.stop.prevent=addFav(place.placeId)>찜 등록</button></td>
-            </tr>
-        </table>
-    </div>
-    <div v-else>
-        <h3>부위({{ placeStore.fitSearchName }}) 검색 결과</h3>
-        <table border="1">
-            <th class="text-center">지역구</th>
-            <th class="text-center">동</th>
-            <th class="text-center">공원명</th>
-            <th class="text-center">해당 운동기구 종류 수</th>
-            <th class="text-center">설치운동기구 종류</th>
-            <th class="text-center">상세보기</th>
-            <th class="text-center">찜버튼</th>
-            <tr v-for="place in placeStore.searchPlaces.value" :key="place.placeId">
-                <td>{{ place.addressGu }}</td>
-                <td>{{ place.addressDong }}</td>
-                <td>{{ place.공원명 }}</td>
-                <td class="text-center">{{ place.cnt }}</td>
-                <td>{{ place.설치운동기구종류 }}</td>
-                <td class="text-center"><button @click="goDetail(place.placeId)" :placeId="place.placeId">상세보기</button>
-                </td>
-                <td class="text-center"><button @click.stop.prevent=addFav(place.placeId)>찜 등록</button></td>
-            </tr>
-        </table>
+        <div v-if="placeStore.fitSearchTF === false">
+            <h3>일반 검색 결과</h3>
+            <table class="table" border="1">
+                <thead>
+                    <tr>
+                        <th class="text-center">지역구</th>
+                        <th class="text-center">동</th>
+                        <th class="text-center">상세주소</th>
+                        <th class="text-center">상세보기</th>
+                        <th class="text-center">즐겨찾기</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    <tr v-for="place in placeStore.limitStores.value" :key="place.placeId">
+                        <td>{{ place.addressGu }}</td>
+                        <td>{{ place.addressDong }}</td>
+                        <td>{{ place.addressDetail }}</td>
+                        <td><button class="btn btn-primary" @click="goDetail(place.placeId)" :placeId="place.placeId">상세보기</button></td>
+                        <td><button class="btn btn-success" @click.stop.prevent=addFav(place.placeId)>등록하기</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div v-else>
+            <h3>부위({{ placeStore.fitSearchName }}) 검색 결과</h3>
+            <table class="table" border="1">
+                <thead>
+                    <tr>
+                        <th class="text-center" >지역구</th>
+                        <th class="text-center" >동</th>
+                        <th class="text-center" >공원명</th>
+                        <th class="text-center" >종류 수</th>
+                        <th class="text-center" >설치운동기구 종류</th>
+                        <th class="text-center">상세보기</th>
+                        <th class="text-center">즐겨찾기</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    <tr v-for="place in placeStore.searchPlaces.value" :key="place.placeId">
+                        <td>{{ place.addressGu }}</td>
+                        <td>{{ place.addressDong }}</td>
+                        <td>{{ place.공원명 }}</td>
+                        <td class="text-center">{{ place.cnt }}</td>
+                        <td>{{ place.설치운동기구종류 }}</td>
+                        <td class="text-center"><button class="btn btn-primary" @click="goDetail(place.placeId)" :placeId="place.placeId">상세보기</button>
+                        </td>
+                        <td class="text-center"><button class="btn btn-success"  @click.stop.prevent=addFav(place.placeId)>등록하기</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </template>
 <script setup>
@@ -98,12 +113,21 @@ onMounted(async () => {
 </script>
 
 <style scoped>
-.searchSection a{
+
+
+#search-nav a{
     text-decoration-line: none;
     color: black;
+    font-family: 'Pretendard-Regular';
+    font-weight: 800;
 }
 
 table{
     text-align: center;
+}
+
+h3{
+    font-family: 'Pretendard-Regular';
+    font-weight: 800;
 }
 </style>

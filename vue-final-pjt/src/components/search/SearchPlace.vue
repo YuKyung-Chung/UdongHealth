@@ -11,12 +11,11 @@
     </div> -->
     <div class="input-group mb-3">
 
-    <select class="form-select" v-model="searchCondition">
-        <option selected></option>
+    <select class="form-select custom-select" v-model="searchCondition">
         <option value="place_name">공원이름</option>
         <option value="address_dong">지역(동)</option>
     </select>
-      <input type="text" class="form-control" id="search" v-model="keyword" placeholder="키워드를 쓰시오."/>
+      <input type="text" class="form-control" id="search" v-model="keyword" placeholder="검색할 단어를 입력하세요."/>
       <button class="btn btn-primary" type="submit" @keyup.enter.stop.prevent=searchPlace
             @click.stop.prevent=searchPlace>검색</button>
     </div>
@@ -59,4 +58,7 @@ onMounted (() => {
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+.custom-select {
+    max-width: 150px; /* 원하는 가로 크기 설정 */
+}</style>
