@@ -12,7 +12,7 @@
             <th>상세주소</th>
             <th>상세보기</th>
             <th>찜버튼</th>
-            <tr v-for="place in placeStore.searchPlaces.value" :key="place.placeId">
+            <tr v-for="place in placeStore.limitStores.value" :key="place.placeId">
                 <td>{{ place.addressGu }}</td>
                 <td>{{ place.addressDong }}</td>
                 <td>{{ place.addressDetail }}</td>
@@ -87,10 +87,9 @@ onMounted(async () => {
     router.push("/search/place")
     await placeStore.getPlaces();
     if (placeStore.places.length >= 20) {
-        placeStore.searchPlaces.value = placeStore.places.slice(0, 20);
-
+        placeStore.limitStores.value = placeStore.places.slice(0, 20);
     } else {
-        placeStore.searchPlaces.value = placeStore.places;
+        placeStore.limitStores.value = placeStore.places;
     }
     user.value = JSON.parse(sessionStorage.getItem("user"));
 

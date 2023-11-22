@@ -6,6 +6,7 @@ export const usePlaceStore = defineStore('place', () => {
     const reviewPlaceId = ref(-1);
     const places = ref([]);
     const searchPlaces =ref([]);
+    const limitStores = ref([]);
     const fitSearchTF = ref(false);
     const fitSearchName = ref("");
     const getPlaces = async () => {
@@ -24,5 +25,5 @@ export const usePlaceStore = defineStore('place', () => {
 
 
 
-    return { places, fitSearchTF, fitSearchName, getPlaces, reviewPlaceId, searchPlaces, setReviewPlaceId}
+    return { places, limitStores, searchPlaces, fitSearchTF, fitSearchName, getPlaces, reviewPlaceId, setReviewPlaceId}
 })
