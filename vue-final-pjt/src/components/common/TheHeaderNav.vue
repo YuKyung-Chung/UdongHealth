@@ -9,7 +9,7 @@
 
 
                 <RouterLink to="/">
-                    <h1 class="title">UDFH</h1>
+                    <h1 class="title">Udong Health</h1>
                 </RouterLink>
 
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse"
@@ -56,6 +56,14 @@ onMounted(() => {
 </script>
 
 <style  scoped>
+#mainNav{
+    background-color: #67BA6A;
+    background: linear-gradient(to center, #A6D7A7 10%, #449F47 50%);
+}
+
+#navbarResponsive{
+    font-size: 18px;
+}
 .logo {
     display: flex;
     align-items: center;
@@ -74,6 +82,7 @@ img {
 
 a {
     text-decoration-line: none;
-    color: black;
+    color: white;
+    font-family: "Pretendard-Regular";
 }
 </style>
