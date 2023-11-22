@@ -134,5 +134,6 @@ const displayMarker = function (markerPositions) {
 
 .container {
   display: flex;
+  height: 90vh;
 }
 </style>

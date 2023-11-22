@@ -1,4 +1,5 @@
 <template>
+    <div class="container px-4 px-lg-5">
     <RouterLink to="/search/place">일반 검색</RouterLink>
     <RouterLink to="/search/fit">부위 검색</RouterLink>
     <RouterView />
@@ -42,6 +43,7 @@
             </tr>
         </table>
 
+    </div>
     </div>
 </template>
 <script setup>

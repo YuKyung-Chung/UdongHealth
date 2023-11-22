@@ -4,9 +4,12 @@
       <header>
         <TheHeaderNav />
       </header>
+        <div v-if="$route.path === '/'">
+                <TheMastHead/>
+        </div>
       <main class="container-fluid">
         <div class="row">
-          <section class="col-9">
+          <section class="col-9" id="rootSection">
 
             <RouterView />
           </section>
@@ -42,10 +45,11 @@ import TheFavList from "./components/common/TheFavList.vue";
 import { useUserStore } from './stores/user'
 import SigninForm from "./components/common/TheSigninForm.vue";
 import { onMounted, ref, } from "vue";
-
+import TheMastHead from "./components/common/TheMastHead.vue";
 
 
 const store = useUserStore();
+
 
 onMounted(() => {
   if (sessionStorage.getItem("user") !== null) {
@@ -79,11 +83,16 @@ onMounted(() => {
   font-style: normal;
 }
 
+.container-fluid{
+  margin-top: 100px;
+}
+
 #wrapper {
   height: auto;
   min-height: 100%;
   padding-bottom: 0;
 }
+
 
 footer {
   height: 0;

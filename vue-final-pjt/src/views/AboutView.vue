@@ -1,4 +1,5 @@
 <template>
+    <div class="container px-4 px-lg-5">
     <div class="row imageContainer">
         <div class="col images">
             <img src="../assets/yhC.png" width="300" />
@@ -10,6 +11,7 @@
         </div>
 
     </div>
+</div>
 </template>
 
 <script setup>
