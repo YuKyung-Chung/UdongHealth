@@ -3,11 +3,11 @@
         <div class="carousel-inner text-center ">
             <div class="carousel-item active justify-content-center">
                 <img :src="`src/${firstImage.src}`" alt="image" width="500">
-                <h2>{{ firstImage.alt }}</h2>
+                <p>{{ firstImage.alt }}</p>
             </div>
             <div class="carousel-item justify-content-center" v-for="(image, index) in pImgs" :key="image.alt">
                 <img :src="`src/${image.src}`" width="500" :alt="`${image.alt}`">
-                <h2>{{ image.alt }}</h2>
+                <p>{{ image.alt }}</p>
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
@@ -48,12 +48,6 @@ onMounted(() => {
     firstImage.value = _.cloneDeep(images.value[0]);
     pImgs.value = _.cloneDeep(images.value).slice(1);
 })
-
-
-
-
-
-
 
 const upperBodyImages = [{
     src: "assets/상체/바웨이트.jpg",
@@ -133,4 +127,21 @@ const coreImages = [{
 
 </script>
 
-<style scoped></style>
+<style scoped>
+.carousel-control-prev-icon,
+.carousel-control-next-icon
+{
+    color: black;
+    background-color: black;
+}
+
+
+
+p{
+    font-family: 'Pretendard-Regular';
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+
+</style>

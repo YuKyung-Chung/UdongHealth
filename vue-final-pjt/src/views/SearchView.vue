@@ -1,8 +1,8 @@
 <template>
     <div class="container">
         <div class="nav nav-underline" id="search-nav">
-            <RouterLink class="nav-link" to="/search/place">일반 검색</RouterLink>
-            <RouterLink class="nav-link" to="/search/fit">부위 검색</RouterLink>
+            <RouterLink class="nav-link" :class="{ 'active': $route.path === '/search/place' }" to="/search/place">일반 검색</RouterLink>
+            <RouterLink class="nav-link" :class="{ 'active': $route.path === '/search/fit' }" to="/search/fit">부위 검색</RouterLink>
             <RouterView />
         </div>
 
@@ -61,7 +61,7 @@
 </template>
 <script setup>
 import { ref, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
+import { RouterLink, RouterView, useRouter } from 'vue-router'
 import { usePlaceStore } from '../stores/place';
 import { useUserStore } from '../stores/user';
 import axios from 'axios';
@@ -114,7 +114,11 @@ onMounted(async () => {
 
 <style scoped>
 
-
+/* active 클래스로 선택된 링크의 색상 변경 */
+#search-nav .nav-link.active {
+  color: #0D6EFD;
+  font-weight: 800;
+}
 #search-nav a{
     text-decoration-line: none;
     color: black;
@@ -133,5 +137,9 @@ h3{
 .btn-success {
     background-color : #2D7E32;
     border-color : #2D7E32;
+}
+
+.active{
+    color: #0D6EFD !important;
 }
 </style>
