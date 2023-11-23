@@ -1,61 +1,63 @@
 <template>
-    <div class="container">
-        <div class="nav nav-underline" id="search-nav">
+    <div class="container mx-5">
+        <div class="nav nav-underline mx-5" id="search-nav">
             <RouterLink class="nav-link" :class="{ 'active': $route.path === '/search/place' }" to="/search/place">일반 검색</RouterLink>
             <RouterLink class="nav-link" :class="{ 'active': $route.path === '/search/fit' }" to="/search/fit">부위 검색</RouterLink>
             <RouterView />
         </div>
 
-        <div v-if="placeStore.fitSearchTF === false">
-            <h3>일반 검색 결과</h3>
-            <table class="table" border="1">
-                <thead>
-                    <tr>
-                        <th class="text-center">지역구</th>
-                        <th class="text-center">동</th>
-                        <th class="text-center">상세주소</th>
-                        <th class="text-center">상세보기</th>
-                        <th class="text-center">즐겨찾기</th>
-                    </tr>
-                </thead>
-                <tbody class="table-group-divider">
-                    <tr v-for="place in placeStore.limitStores.value" :key="place.placeId">
-                        <td>{{ place.addressGu }}</td>
-                        <td>{{ place.addressDong }}</td>
-                        <td>{{ place.addressDetail }}</td>
-                        <td><button class="btn btn-primary" @click="goDetail(place.placeId)" :placeId="place.placeId">상세보기</button></td>
-                        <td><button class="btn btn-success" @click.stop.prevent=addFav(place.placeId)>등록하기</button></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div v-else>
-            <h3>부위({{ placeStore.fitSearchName }}) 검색 결과</h3>
-            <table class="table" border="1">
-                <thead>
-                    <tr>
-                        <th class="text-center" >지역구</th>
-                        <th class="text-center" >동</th>
-                        <th class="text-center" >공원명</th>
-                        <th class="text-center" >종류 수</th>
-                        <th class="text-center" >설치운동기구 종류</th>
-                        <th class="text-center">상세보기</th>
-                        <th class="text-center">즐겨찾기</th>
-                    </tr>
-                </thead>
-                <tbody class="table-group-divider">
-                    <tr v-for="place in placeStore.searchPlaces.value" :key="place.placeId">
-                        <td>{{ place.addressGu }}</td>
-                        <td>{{ place.addressDong }}</td>
-                        <td>{{ place.공원명 }}</td>
-                        <td class="text-center">{{ place.cnt }}</td>
-                        <td class="text-truncate">{{ place.설치운동기구종류 }}</td>
-                        <td class="text-center"><button class="btn btn-primary" @click="goDetail(place.placeId)" :placeId="place.placeId">상세보기</button>
-                        </td>
-                        <td class="text-center"><button class="btn btn-success"  @click.stop.prevent=addFav(place.placeId)>등록하기</button></td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="mx-5">
+            <div v-if="placeStore.fitSearchTF === false">
+                <h3 class="my-3">일반 검색 결과</h3>
+                <table class="table" border="1">
+                    <thead>
+                        <tr>
+                            <th class="text-center">지역구</th>
+                            <th class="text-center">동</th>
+                            <th class="text-center">상세주소</th>
+                            <th class="text-center">상세보기</th>
+                            <th class="text-center">즐겨찾기</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        <tr v-for="place in placeStore.limitStores.value" :key="place.placeId">
+                            <td>{{ place.addressGu }}</td>
+                            <td>{{ place.addressDong }}</td>
+                            <td>{{ place.addressDetail }}</td>
+                            <td><button class="btn btn-primary" @click="goDetail(place.placeId)" :placeId="place.placeId">상세보기</button></td>
+                            <td><button class="btn btn-success" @click.stop.prevent=addFav(place.placeId)>등록하기</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div v-else>
+                <h3 class="my-3">부위({{ placeStore.fitSearchName }}) 검색 결과</h3>
+                <table class="table" border="1">
+                    <thead>
+                        <tr>
+                            <th class="text-center col-1" >지역구</th>
+                            <th class="text-center col-1" >동</th>
+                            <th class="text-center col-2" >공원명</th>
+                            <th class="text-center col-1" >종류 수</th>
+                            <th class="text-center col-3">설치운동기구 종류</th>
+                            <th class="text-center col-2">상세보기</th>
+                            <th class="text-center col-2">즐겨찾기</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        <tr v-for="place in placeStore.searchPlaces.value" :key="place.placeId">
+                            <td>{{ place.addressGu }}</td>
+                            <td>{{ place.addressDong }}</td>
+                            <td>{{ place.공원명 }}</td>
+                            <td class="text-center">{{ place.cnt }}</td>
+                            <td class="text-truncate">{{ place.설치운동기구종류 }}</td>
+                            <td class="text-center"><button class="btn btn-primary" @click="goDetail(place.placeId)" :placeId="place.placeId">상세보기</button>
+                            </td>
+                            <td class="text-center"><button class="btn btn-success"  @click.stop.prevent=addFav(place.placeId)>등록하기</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </template>

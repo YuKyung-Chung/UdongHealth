@@ -9,7 +9,7 @@
         <button type="submit" class="btn btn-primary mb-3" @keyup.enter.stop.prevent=searchPlace
             @click.stop.prevent=searchPlace>검색</button>
     </div> -->
-    <div class="input-group mb-3">
+    <div class="input-group mb-3 my-3">
 
     <select class="form-select custom-select" v-model="searchCondition">
         <option value="place_name">공원이름</option>

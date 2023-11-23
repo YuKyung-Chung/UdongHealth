@@ -1,5 +1,5 @@
 <template>
-    <div class="mx-5 ">
+    <div class="mx-5">
         <h2 class="mx-5 text-center">운동기구 종류</h2>
         <div class="nav nav-underline d-flex justify-content-center">
             <button type="button" class="nav-link" :class="{ 'active': fitPart === 'All' }" @click.stop.prevent="handleFitPartClick(`All`)">전체</button>
