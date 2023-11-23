@@ -26,7 +26,7 @@
 
 <script setup>
 import axios from 'axios';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { usePlaceStore } from '../../stores/place';
 import { useUserStore } from '../../stores/user';
@@ -70,6 +70,11 @@ const goReviewDelete = async (review) => {
 }
 
 onMounted(async () => {
+    let URL = import.meta.env.VITE_APP_API_REVIEW_URL + "/" + route.params.placeId
+    const response = await axios.get(URL);
+    reviews.value = response.data;
+})
+watch(()=> route.params.placeId, async(newParam, oldParam) => {
     let URL = import.meta.env.VITE_APP_API_REVIEW_URL + "/" + route.params.placeId
     const response = await axios.get(URL);
     reviews.value = response.data;

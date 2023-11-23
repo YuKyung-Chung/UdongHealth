@@ -3,7 +3,7 @@
         <div id="map2"></div>
         <div>
             <p>{{ place.addressGu + " " + place.addressDong + " " + place.공원명 }}</p>
-           <TheReviewList :placeId = "placeId"/>
+           <TheReviewList :placeId= "placeId" key="reviewList"/>
            <button type="submit" class="btn btn-primary mb-3" @click.stop.prevent=reviewAdd
                >리뷰작성</button>
         </div>
@@ -12,7 +12,7 @@
 
 <script setup>
 import axios from 'axios';
-import { ref, onMounted, toRaw } from 'vue';
+import { ref, onMounted, toRaw, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import TheReviewList from '@/components/review/TheReviewList.vue';
 import { usePlaceStore } from '../stores/place';
@@ -20,10 +20,10 @@ import { useUserStore } from '../stores/user';
 const route = useRoute();
 const router = useRouter();
 const place = ref({});
-const placeId = route.params.placeId;
+const placeId = ref(route.params.placeId);
 const placeStore = usePlaceStore();
 const userStore = useUserStore();
-placeStore.setReviewPlaceId(placeId); 
+placeStore.setReviewPlaceId(placeId.value); 
 
 const reviewAdd = () => {
     if (userStore.loginTF === false) {
@@ -31,11 +31,19 @@ const reviewAdd = () => {
         return
     }
     else {
-        router.push(`/placeDetail/${placeId}/reviewAdd`)
+        router.push(`/placeDetail/${placeId.value}/reviewAdd`)
     }
 
 }
 
+watch(() => route.params.placeId, async(newParam, oldParam) => {
+    placeId.value = newParam;
+    let URL = import.meta.env.VITE_APP_API_PLACE_URL + "/" + placeId.value;
+    const response = await axios.get(URL);
+    place.value = response.data;
+
+    initMap();
+})
 
 
 let map = null;
@@ -101,7 +109,7 @@ const displayMarker = function (markerPositions) {
 
 onMounted(async () => {
     try {
-        let URL = import.meta.env.VITE_APP_API_PLACE_URL + "/" + placeId;
+        let URL = import.meta.env.VITE_APP_API_PLACE_URL + "/" + placeId.value;
         console.log(URL);
         const response = await axios.get(URL);
         place.value = response.data;
