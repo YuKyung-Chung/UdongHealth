@@ -1,21 +1,37 @@
 <template>
-    <div class="mapContainer">
-        <div id="map2"></div>
-        <div class="ps-3">
-            <p>무료헬스장 : {{ place.addressGu + " " + place.addressDong + " " + place.공원명 }}</p>
-            <p>설치주소 : {{ place.설치주소 }}</p>
-            <p>설치 운동기구종류 :{{ place.설치운동기구종류 }}</p>
-            <p>연간운동기구관리횟수 : {{ place.연간운동기구관리횟수 }}</p>
-            <p>고장난운동기구명 :{{ place.고장난운동기구명 }}</p>
-            <p>담당부서명 :{{ place.담당부서명 }}</p>
-            <p>담당부서 전화번호 : {{ place.담당부서전화번호 }}</p>
+    <div class="container">
+        <h3 class="mb-4">🌳 {{ place.addressGu + " " + place.addressDong + " " + place.공원명 }}</h3>
+        <div class="mapContainer">
+            <div id="map2"></div>
+            <dl class=" mx-5 px-2 py-2">
+                <dt>무료헬스장</dt>
+                <dd> {{ place.addressGu + " " + place.addressDong + " " + place.공원명 }}</dd>
+
+                <dt>설치주소</dt>
+                <dd>{{ place.설치주소 }}</dd>
             
+                <dt>설치 운동기구 종류</dt>
+                <dd>{{ place.설치운동기구종류 }}</dd>
             
-           <TheReviewList :placeId= "placeId" key="reviewList"/>
-           <button type="submit" class="btn btn-primary mb-3" @click.stop.prevent=reviewAdd
-               >리뷰작성</button>
-        </div>
+                <dt>연간 운동기구 관리 횟수</dt>
+                <dd>{{ place.연간운동기구관리횟수 }}</dd>
+
+                <dt>고장난 운동기구명</dt>
+                <dd>{{ place.고장난운동기구명 }}</dd>
+
+                <dt>담당부서명</dt>
+                <dd>{{ place.담당부서명 }}</dd>
+
+                <dt>담당부서 전화번호</dt>
+                <dd>{{ place.담당부서전화번호 }}</dd>
+
+                <TheReviewList :placeId= "placeId" key="reviewList"/>
+                <button type="submit" class="btn btn-primary mb-3" @click.stop.prevent=reviewAdd
+                    >리뷰작성</button>
+            </dl>
+        </div>  
     </div>
+    
 </template>
 
 <script setup>
@@ -151,7 +167,21 @@ onMounted(async () => {
     height: 50vh;
 }
 
+dt{
+    color: #1A5E21;
+    font-size: medium;
+}
+
+h3{
+  font-family: 'Pretendard-Regular';
+  font-weight: 600;
+}
+.container {
+  height: 80vh;
+  font-family: 'Pretendard-Regular';
+}
 .mapContainer {
     display: flex;
+    /* font-family: 'Pretendard-Regular'; */
 }
 </style>

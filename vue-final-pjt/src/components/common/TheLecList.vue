@@ -1,9 +1,17 @@
 <template>
-    <div>
-        <div v-for="lec in lecList" :key=lec.placeId>
-            <RouterLink :to="{ path: `/placeDetail/${lec.placeId}`}" > {{lec.공원명}} </RouterLink>
-        </div>
-        
+    <div class="list-container mx-5">
+        <ol class="list-group list-group-numbered  px-2 py-2">
+            <li class="list-group-item d-flex justify-content-between align-items-start p-4" v-for="lec in lecList" :key=lec.placeId>
+              <div class="ms-2 me-auto" >
+                <RouterLink :to="{ path: `/placeDetail/${lec.placeId}`}" > {{lec.공원명}} </RouterLink>
+                <br>
+                {{ lec.설치주소 }}
+                <br>
+                {{lec.distance}} km
+              </div>
+              <span class="badge bg-primary rounded-pill">14</span>
+            </li>
+        </ol>
     </div>
 </template>
 
@@ -26,4 +34,14 @@ onMounted(() => {
 
 </script>
 
-<style scoped></style>
+<style scoped>
+.list-container{
+    font-family: 'Pretendard-Regular';
+}
+
+a{
+    text-decoration: none;
+    /* color: black; */
+    font-family: 'Pretendard-Regular';
+}
+</style>
