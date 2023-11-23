@@ -1,35 +1,52 @@
 <template>
-    <ul class="nav nav-tabs">
-  <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="#">Active</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Link</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Link</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link disabled">Disabled</a>
-  </li>
-</ul>
-    <form class="col" style="width: 18rem;">
-        <div class="row-auto">
-            <label for="inputId1">Email</label>
-            <input type="text" v-model="inputId1" class="form-control" id="staticId1" placeholder="id">
-        </div>
-        <div class="row-auto">
-            <label for="inputPassword1">Password</label>
-            <input type="password" v-model="inputPassword1" class="form-control" id="inputPassword1" placeholder="Password">
-        </div>
+    <ul class="nav nav-tabs" style="width: 18rem;">
+        <li class="nav-item">
+            <p class="nav-link" :class="{ 'active' : signUpTF === false}" @click="loginClick">Login</p>
+        </li>
+        <li class="nav-item">
+            <p class="nav-link" :class="{ 'active' : signUpTF === true}" @click="signUpClick">SignUp</p>
+        </li>
 
-        <div class="d-flex justify-content-between">
-            <button type="submit" class="btn btn-primary mb-3" @click.stop.prevent=signIn
-                @keyup.enter.stop.prevent=signIn>로그인</button>
-            <RouterLink to="/signup"> 회원가입 </RouterLink>
-        </div>
+    </ul>
+    <div v-if="signUpTF === false">
+        <form class="col" style="width: 18rem;">
+            <div class="row-auto">
+                <label for="inputId1">Email</label>
+                <input type="text" v-model="inputId1" class="form-control" id="staticId1" placeholder="id">
+            </div>
+            <div class="row-auto">
+                <label for="inputPassword1">Password</label>
+                <input type="password" v-model="inputPassword1" class="form-control" id="inputPassword1"
+                    placeholder="Password">
+            </div>
 
-    </form>
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary mb-3" @click.stop.prevent=signIn
+                    @keyup.enter.stop.prevent=signIn>로그인</button>
+            </div>
+
+        </form>
+    </div>
+    <div v-else>
+        <form class="col" style="width: 18rem;">
+            <div class="row-auto">
+                <label for="name">Name</label>
+                <input type="text" v-model="name" class="form-control" id="name" placeholder="Name" />
+            </div>
+            <div class="row-auto">
+                <label for="email">Email</label>
+                <input type="email" v-model="email" class="form-control" id="email" placeholder="Email" />
+            </div>
+            <div class="row-auto">
+                <label for="pw">Password</label>
+                <input type="password" v-model="pw" class="form-control" id="pw" placeholder="Password" />
+            </div>
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary mb-3" @click.stop.prevent=signupId
+                    @keyup.enter.stop.prevent=signupId>회원가입</button>
+            </div>
+        </form>
+    </div>
 </template>
 
 <script setup>
@@ -40,6 +57,19 @@ import router from "@/router";
 const inputId1 = ref("");
 const inputPassword1 = ref("");
 const store = useUserStore();
+const signUpTF = ref(false);
+const name = ref("");
+const email = ref("");
+const pw = ref("");
+const signUpClick = () => {
+    signUpTF.value = true;
+}
+const loginClick = () => {
+    signUpTF.value = false;
+}
+
+
+
 
 const signIn = async () => {
     const URL = import.meta.env.VITE_APP_API_URL + "/" + "login";
@@ -57,6 +87,33 @@ const signIn = async () => {
 
             alert(error.response.data.message);
         })
+
+
+}
+
+const signupId = async () => {
+    const URL = import.meta.env.VITE_APP_API_URL + "/" + "signup";
+    axios
+        .post(URL, {
+            name: name.value,
+            email: email.value,
+            password: pw.value,
+        })
+        .then((res) => {
+
+            console.log(res)
+            alert("회원가입 완료!, 로그인 해주세요");
+            name.value="";
+            pw.value="";
+            email.value="";
+            signUpTF.value = false;
+        })
+        .catch((res) => {
+            alert("중복 아이디입니다. 다른 아이디를 사용해주세요")
+            console.log(res);
+        })
+    
+
 
 
 }
