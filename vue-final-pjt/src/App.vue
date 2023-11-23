@@ -8,24 +8,33 @@
                 <TheMastHead/>
         </div>
       <main class="container-fluid">
-        <div class="row rowSection">
-          <section class="col-9" id="rootSection">
+        <div class="row">
 
-            <RouterView />
-          </section>
-          <aside class="col-3 pe-5">
-            <div v-if="$route.path !== '/signup'">
-              <div v-if="store.loginTF === false">
-                <LoginForm />
+          <div class="col">
+            
+          </div>
+          <div class="row rowSection col-9">
+            <section class="col-9" id="rootSection">
+              
+              <RouterView />
+            </section>
+            <aside class="col-3 pe-5">
+              <div v-if="$route.path !== '/signup'">
+                <div v-if="store.loginTF === false">
+                  <LoginForm />
+                </div>
+                <div v-else>
+                  <SigninForm />
+                </div>
+                <TheFavList />
+                
               </div>
-              <div v-else>
-                <SigninForm />
-              </div>
-              <TheFavList />
-
-            </div>
-
-          </aside>
+              
+            </aside>
+          </div>
+          <div class="col">
+            
+          </div>
         </div>
       </main>
 
