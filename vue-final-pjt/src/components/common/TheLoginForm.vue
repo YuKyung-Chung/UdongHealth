@@ -92,6 +92,14 @@ const signIn = async () => {
 }
 
 const signupId = async () => {
+    if (name.value === "" || email.value === "" || pw.value === "" ) {
+        alert("값을 입력해주세요");
+        return;
+    }
+
+
+
+
     const URL = import.meta.env.VITE_APP_API_URL + "/" + "signup";
     axios
         .post(URL, {
