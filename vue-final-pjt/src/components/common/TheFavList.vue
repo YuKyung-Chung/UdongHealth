@@ -1,7 +1,7 @@
 <template>
     <div class="favListClass">
     <div v-if="userStore.loginTF === false" class="icon-text-container row">
-        <h4> 오늘의 운동 상식 </h4>
+        <h4 class="mt-3"> 오늘의 운동 상식 </h4>
         <div v-for="art in arts">
             
             <p>{{ art.content }}</p>
