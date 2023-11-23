@@ -1,6 +1,10 @@
 <template>
-    <div>
-        <img v-for="(image, index) in images" :key="image.alt" :src="image.src" width="100" :alt="image.alt" @click.stop.prevent="handleImageClick(index)" />
+    <div class="d-flex">
+        <div class="border border-2 rounded p-2 m-1 hover-effect" v-for="(image, index) in images" @click.stop.prevent="handleImageClick(index)">
+            <img  :key="image.alt" :src="image.src" width="58" :alt="image.alt"  />
+            <p class="text-center my-1">{{ image.alt }}</p>
+        </div>
+        
     </div>
 </template>
 
@@ -75,4 +79,13 @@ const images = [{
 
 <style scoped>
 
+.hover-effect:hover {
+  /* 원하는 스타일을 추가하세요 */
+  background-color: #E2F2FD;
+  cursor: pointer;
+}
+p{
+    font-family: 'Pretendard-Regular';
+    font-weight: 600;
+}
 </style>
