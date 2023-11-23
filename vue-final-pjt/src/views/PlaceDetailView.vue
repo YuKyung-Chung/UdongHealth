@@ -1,8 +1,16 @@
 <template>
     <div class="mapContainer">
         <div id="map2"></div>
-        <div>
-            <p>{{ place.addressGu + " " + place.addressDong + " " + place.공원명 }}</p>
+        <div class="ps-3">
+            <p>무료헬스장 : {{ place.addressGu + " " + place.addressDong + " " + place.공원명 }}</p>
+            <p>설치주소 : {{ place.설치주소 }}</p>
+            <p>설치 운동기구종류 :{{ place.설치운동기구종류 }}</p>
+            <p>연간운동기구관리횟수 : {{ place.연간운동기구관리횟수 }}</p>
+            <p>고장난운동기구명 :{{ place.고장난운동기구명 }}</p>
+            <p>담당부서명 :{{ place.담당부서명 }}</p>
+            <p>담당부서 전화번호 : {{ place.담당부서전화번호 }}</p>
+            
+            
            <TheReviewList :placeId= "placeId" key="reviewList"/>
            <button type="submit" class="btn btn-primary mb-3" @click.stop.prevent=reviewAdd
                >리뷰작성</button>
@@ -139,8 +147,8 @@ onMounted(async () => {
 
 <style  scoped>
 #map2 {
-    width: 60%;
-    height: 70vh;
+    width: 40%;
+    height: 50vh;
 }
 
 .mapContainer {

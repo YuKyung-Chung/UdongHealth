@@ -47,7 +47,7 @@ h2{
     font-weight: 800;
 }
 .kindView {
-    height : 78vh;
+    height : 66.7vh;
 }
 
 button{

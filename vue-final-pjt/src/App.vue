@@ -7,7 +7,7 @@
         <div v-if="$route.path === '/'">
                 <TheMastHead/>
         </div>
-      <main class="container-fluid">
+      <main class="row">
         <div class="row">
 
           <div class="col">

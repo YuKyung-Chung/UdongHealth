@@ -130,8 +130,8 @@ const displayMarker = function (markerPositions) {
 
 <style scoped>
 #map {
-  width: 60%;
-  height: 70vh;
+  width: 40%;
+    height: 50vh;
 }
 
 .container {
