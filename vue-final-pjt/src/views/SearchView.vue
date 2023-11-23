@@ -9,30 +9,28 @@
         <div class="mx-5">
             <div v-if="placeStore.fitSearchTF === false">
                 <h3 class="my-3">일반 검색 결과</h3>
-                <table class="table" border="1">
+                <table class="table table-hover align-middle">
                     <thead>
                         <tr>
-                            <th class="text-center">지역구</th>
-                            <th class="text-center">동</th>
-                            <th class="text-center">상세주소</th>
-                            <th class="text-center">상세보기</th>
-                            <th class="text-center">즐겨찾기</th>
+                            <th>지역구</th>
+                            <th>동</th>
+                            <th>상세주소</th>
+                            <th>즐겨찾기</th>
                         </tr>
                     </thead>
                     <tbody class="table-group-divider">
                         <tr v-for="place in placeStore.limitStores.value" :key="place.placeId">
-                            <td>{{ place.addressGu }}</td>
+                            <td class="text-center">{{ place.addressGu }}</td>
                             <td>{{ place.addressDong }}</td>
-                            <td>{{ place.addressDetail }}</td>
-                            <td><button class="btn btn-primary" @click="goDetail(place.placeId)" :placeId="place.placeId">상세보기</button></td>
-                            <td><button class="btn btn-success" @click.stop.prevent=addFav(place.placeId)>등록하기</button></td>
+                            <td class="addressDetail" @click="goDetail(place.placeId)">{{ place.addressDetail }}</td>
+                            <td><button class="btn" @click.stop.prevent=addFav(place.placeId)>⭐</button></td>
                         </tr>
                     </tbody>
-                </table>
+                </table> 
             </div>
             <div v-else>
                 <h3 class="my-3">부위({{ placeStore.fitSearchName }}) 검색 결과</h3>
-                <table class="table" border="1">
+                <table class="table table-hover align-middle">
                     <thead>
                         <tr>
                             <th class="text-center col-1" >지역구</th>
@@ -40,7 +38,7 @@
                             <th class="text-center col-2" >공원명</th>
                             <th class="text-center col-1" >종류 수</th>
                             <th class="text-center col-3">설치운동기구 종류</th>
-                            <th class="text-center col-2">상세보기</th>
+                            <!-- <th class="text-center col-2">상세보기</th> -->
                             <th class="text-center col-2">즐겨찾기</th>
                         </tr>
                     </thead>
@@ -48,12 +46,12 @@
                         <tr v-for="place in placeStore.searchPlaces.value" :key="place.placeId">
                             <td>{{ place.addressGu }}</td>
                             <td>{{ place.addressDong }}</td>
-                            <td>{{ place.공원명 }}</td>
-                            <td class="text-center">{{ place.cnt }}</td>
-                            <td class="text-truncate">{{ place.설치운동기구종류 }}</td>
-                            <td class="text-center"><button class="btn btn-primary" @click="goDetail(place.placeId)" :placeId="place.placeId">상세보기</button>
-                            </td>
-                            <td class="text-center"><button class="btn btn-success"  @click.stop.prevent=addFav(place.placeId)>등록하기</button></td>
+                            <td class="addressDetail" @click="goDetail(place.placeId)">{{ place.공원명 }}</td>
+                            <td>{{ place.cnt }}</td>
+                            <td>{{ place.설치운동기구종류 }}</td>
+                            <!-- <td class="text-center"><button class="btn btn-primary" @click="goDetail(place.placeId)" :placeId="place.placeId">상세보기</button>
+                            </td> -->
+                            <td><button class="btn"  @click.stop.prevent=addFav(place.placeId)>⭐</button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -142,12 +140,19 @@ h3{
     font-family: 'Pretendard-Regular';
     font-weight: 800;
 }
-.btn-success {
-    background-color : #2D7E32;
-    border-color : #2D7E32;
-}
 
 .active{
     color: #0D6EFD !important;
+}
+
+.addressDetail {
+    color : #4DA350;
+}
+.addressDetail:hover {
+    color: #0D6EFD; 
+    cursor : pointer;
+}
+.btn {
+    font-size:large
 }
 </style>
