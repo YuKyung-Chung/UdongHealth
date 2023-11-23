@@ -165,6 +165,7 @@ onMounted(async () => {
 #map2 {
     width: 40%;
     height: 50vh;
+    z-index: 0;
 }
 
 dt{
@@ -177,7 +178,8 @@ h3{
   font-weight: 600;
 }
 .container {
-  height: 80vh;
+    height: auto;
+  min-height: 80vh;
   font-family: 'Pretendard-Regular';
 }
 .mapContainer {
