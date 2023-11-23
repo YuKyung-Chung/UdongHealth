@@ -24,9 +24,8 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, defineProps } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import _ from 'lodash';
-import { useRouter } from 'vue-router'
 const firstImage = ref({});
 const images = ref([]);
 const pImgs = ref([]);

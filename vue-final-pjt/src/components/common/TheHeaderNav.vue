@@ -43,7 +43,6 @@
 <script setup>
 import { onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import TheMastHead from './TheMastHead.vue';
 
 
 const router = useRouter();

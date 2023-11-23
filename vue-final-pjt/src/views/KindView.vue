@@ -25,7 +25,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref } from 'vue'
 import _ from 'lodash';
 import { useRouter } from 'vue-router'
 import TheKindCarousel from '../components/common/TheKindCarousel.vue'
