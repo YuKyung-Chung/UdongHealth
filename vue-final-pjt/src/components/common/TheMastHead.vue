@@ -1,13 +1,17 @@
 <template>
   <!-- Masthead-->
   <header class="masthead">
+    <video autoplay muted loop class="video-bg">
+      <source src="@/assets/walking.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+    <!-- Content inside the header -->
     <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
       <div class="d-flex justify-content-center">
         <div class="text-center">
           <h1 class="mx-auto my-0 text-uppercase">우리 동네 무료 헬스장</h1>
           <h2 class="text-white-50 mx-auto mt-2 mb-5">근처에 이용할 수 있는 운동시설 조회하고 리뷰를 공유하세요.</h2>
           <button class="btn btn-primary" @click="goToHome">근처 둘러보기</button>
-
         </div>
       </div>
     </div>
@@ -29,13 +33,23 @@ const goToHome = () => {
 </script>
 
 <style  scoped>
+
+.video-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
 .masthead {
   position: relative;
   width: 100%;
   height: auto;
   min-height: 35rem;
   padding: 15rem 0;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("@/assets/running.jpg");
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("@/assets/walking.mp4");
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: scroll;
