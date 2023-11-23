@@ -1,5 +1,5 @@
 <template>
-    <div class="mx-5">
+    <div class="mx-5 kindView">
         <h2 class="mx-5 text-center">운동기구 종류</h2>
         <div class="nav nav-underline d-flex justify-content-center">
             <button type="button" class="nav-link" :class="{ 'active': fitPart === 'All' }" @click.stop.prevent="handleFitPartClick(`All`)">전체</button>
@@ -7,7 +7,7 @@
             <button type="button" class="nav-link" :class="{ 'active': fitPart === 'lowerBody' }" @click.stop.prevent="handleFitPartClick(`lowerBody`)">하체</button>
             <button type="button" class="nav-link" :class="{ 'active': fitPart === 'core' }" @click.stop.prevent="handleFitPartClick(`core`)">복부</button>
         </div>
-        <div class="text-center kindView">
+        <div class="text-center">
             <div v-if="fitPart === 'All'">
                 <TheKindCarousel :fitPart="'All'" />
             </div>
@@ -47,7 +47,7 @@ h2{
     font-weight: 800;
 }
 .kindView {
-    height : 66.7vh;
+    height : 77.5vh;
 }
 
 button{

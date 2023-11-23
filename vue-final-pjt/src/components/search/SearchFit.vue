@@ -1,7 +1,7 @@
 <template>
-    <div class="d-flex">
+    <div class="d-flex flex-wrap">
         <div class="border border-2 rounded p-2 m-1 hover-effect" v-for="(image, index) in images" @click.stop.prevent="handleImageClick(index)">
-            <img  :key="image.alt" :src="image.src" width="58" :alt="image.alt"  />
+            <img :key="image.alt" :src="image.src" width="58" :alt="image.alt"  />
             <p class="text-center my-1">{{ image.alt }}</p>
         </div>
         
