@@ -1,5 +1,19 @@
 <template>
-    <form class="col">
+    <ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="#">Active</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Link</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Link</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link disabled">Disabled</a>
+  </li>
+</ul>
+    <form class="col" style="width: 18rem;">
         <div class="row-auto">
             <label for="inputId1">Email</label>
             <input type="text" v-model="inputId1" class="form-control" id="staticId1" placeholder="id">
@@ -9,7 +23,7 @@
             <input type="password" v-model="inputPassword1" class="form-control" id="inputPassword1" placeholder="Password">
         </div>
 
-        <div class="row-auto">
+        <div class="d-flex justify-content-between">
             <button type="submit" class="btn btn-primary mb-3" @click.stop.prevent=signIn
                 @keyup.enter.stop.prevent=signIn>로그인</button>
             <RouterLink to="/signup"> 회원가입 </RouterLink>
@@ -52,5 +66,10 @@ const signIn = async () => {
 <style scoped>
 .btn {
     margin-top: 5px;
+}
+
+a {
+    text-decoration-line: none;
+    color: green;
 }
 </style>

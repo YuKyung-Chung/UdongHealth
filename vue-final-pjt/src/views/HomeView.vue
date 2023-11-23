@@ -136,6 +136,7 @@ h3{
 }
 
 #map {
+  z-index: 0;
   width: 40%;
   height: 50vh;
 }
