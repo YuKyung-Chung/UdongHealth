@@ -68,7 +68,7 @@
 	<!-- 가까운 곳 4곳 조회 -->
 	<!-- Haversine 공식 사용 -->
 	<select id="findNearPlaces" resultMap="placeMap">
-		SELECT * 
+		SELECT *, ROUND((6371 * ACOS(COS(RADIANS(#{latitude})) * COS(RADIANS(latitude)) * COS(RADIANS(longitude)-RADIANS(#{longitude})) + SIN(RADIANS(#{latitude}))*SIN(RADIANS(latitude)))),3) as distance
 		FROM place 
 		ORDER BY (6371 * ACOS(COS(RADIANS(#{latitude})) * COS(RADIANS(latitude)) * COS(RADIANS(longitude)-RADIANS(#{longitude})) + SIN(RADIANS(#{latitude}))*SIN(RADIANS(latitude)))) 
 		LIMIT 4
