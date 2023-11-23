@@ -16,7 +16,7 @@
         <option value="address_dong">지역(동)</option>
     </select>
       <input type="text" class="form-control" id="search" v-model="keyword" placeholder="검색할 단어를 입력하세요."/>
-      <button class="btn btn-primary" type="submit" @keyup.enter.stop.prevent=searchPlace
+      <button class="btn btn-primary searchPlaceButton" type="submit" @keyup.enter.stop.prevent=searchPlace
             @click.stop.prevent=searchPlace>검색</button>
     </div>
 </template>
@@ -61,4 +61,10 @@ onMounted (() => {
 <style scoped>
 .custom-select {
     max-width: 150px; /* 원하는 가로 크기 설정 */
-}</style>
+}
+
+.searchPlaceButton {
+    z-index: 0;
+}
+
+</style>
