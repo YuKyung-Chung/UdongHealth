@@ -83,15 +83,21 @@ const addFav = async (placeId) => {
         alert("찜 기능을 사용할려면 로그인 해주세요")
         return;
     }
+
+    if (userStore.favCount >=4) {
+        alert("찜 등록은 4개까지만 가능합니다.")
+        return;
+    }
+
     const URL = import.meta.env.VITE_APP_API_FAVORITES_URL + `/${user.value.userId}/${placeId}`
 
     try {
-        const response = axios.post(URL)
+        const response = await axios.post(URL)
         alert("찜 등록에 성공했습니다.")
         userStore.addFavTF = true;
     }
     catch (error) {
-        console.log(error);
+        alert(error.response.data.message);
     }
 
 

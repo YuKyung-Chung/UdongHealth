@@ -1,8 +1,9 @@
 <template>
+    <div class="favListClass">
     <div v-if="userStore.loginTF === false" class="icon-text-container row">
         <h4> 오늘의 운동 상식 </h4>
         <div v-for="art in arts">
-
+            
             <p>{{ art.content }}</p>
             <p class="writer">{{ art.writer }}</p>
         </div>
@@ -13,14 +14,19 @@
         </div>
         <div v-else>
             <h3> 즐겨찾는 장소</h3>
-            <div v-for="fav in favList" class="p-3 my-3 favBoard">
+            <div v-for="fav in favList" class="p-3 my-3 border-bottom border-end  border-2 border-secondary shadow rounded">
                 <RouterLink :to="`/placeDetail/${fav.placeId}`">
-                    <h4>{{ fav.addressGu }} {{ fav.addressDong }} {{ fav.공원명 }}</h4>
+                    <h5>{{ fav.addressGu }} {{ fav.addressDong }} {{ fav.공원명 }}</h5>
                 </RouterLink>
-                <p> {{ fav.설치운동기구종류 }}</p>
+                <div>
+                    <p> {{ fav.설치운동기구종류 }}</p>
+                    <button class="btn btn-danger" @click="deleteFav(fav.placeId)">삭제</button>
+                </div>
             </div>
-
+            
         </div>
+    </div>
+
     </div>
 </template>
 
@@ -28,18 +34,20 @@
 import { ref, watch } from 'vue'
 import { useUserStore } from '../../stores/user';
 import axios from 'axios';
-import router from '../../router';
 const userStore = useUserStore();
 const favList = ref([]);
 const user = ref({});
-const arts = [{
-    writer: "SSAFY",
-    content: "복식 호흡의 중요성 알고 계신가요?...",
 
-}, {
-    writer: "조용환",
-    content: "무료 헬스장 100배 즐기기",
-}]
+const deleteFav = async(placeId) => {
+    const deleteURL = import.meta.env.VITE_APP_API_FAVORITES_URL + `/${user.value.userId}/${placeId}` 
+    try {
+        await axios.delete(deleteURL);
+        userStore.favCount--;
+        favList.value = favList.value.filter(item => item.placeId !== placeId);
+    } catch(error) {
+        console.log(error);
+    }
+}
 
 
 watch([() => userStore.loginTF, () => userStore.addFavTF], async () => {
@@ -50,9 +58,10 @@ watch([() => userStore.loginTF, () => userStore.addFavTF], async () => {
         try {
             const response = await axios.get(URL);
             favList.value = response.data;
+            userStore.favCount = favList.value.length;
             favList.value.forEach((item) => {
                 const arr = item.설치운동기구종류.split(",");
-                if (item.설치운동기구종류.length >= 3) {
+                if (arr.length >= 3) {
                     item.설치운동기구종류 = `${arr[0]}, ${arr[1]}, ${arr[2]}, 등...`
                 }
             })
@@ -70,7 +79,17 @@ watch([() => userStore.loginTF, () => userStore.addFavTF], async () => {
     }
 });
 
+const arts = [{
+    writer: "SSAFY",
+    content: "복식 호흡의 중요성 알고 계신가요?...",
 
+}, {
+    writer: "조용환",
+    content: "무료 헬스장 100배 즐기기",
+}, {
+    writer: "정유경",
+    content: "실외 운동기구별 사용법 일타 강의"
+}]
 
 
 </script>
@@ -98,7 +117,7 @@ a {
     text-decoration: none;
 }
 
-.favBoard {
-    border: 1px solid black
+.favListClass {
+    font-family: 'Pretendard-Regular';
 }
 </style>

@@ -13,7 +13,7 @@
 
             <RouterView />
           </section>
-          <aside class="col-3">
+          <aside class="col-3 pe-5">
             <div v-if="$route.path !== '/signup'">
               <div v-if="store.loginTF === false">
                 <LoginForm />
