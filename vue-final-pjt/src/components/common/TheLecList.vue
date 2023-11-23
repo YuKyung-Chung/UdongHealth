@@ -9,7 +9,7 @@
                 <br>
                 {{lec.distance}} km
               </div>
-              <span class="badge bg-primary rounded-pill">14</span>
+              <span class="badge rounded-pill" @click.stop.prevent=addFav(lec.placeId)>⭐</span>
             </li>
         </ol>
     </div>
@@ -18,16 +18,47 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
+import { RouterLink } from 'vue-router'
+import { useUserStore } from '@/stores/user';
 
+const userStore = useUserStore();
 const lecList = ref([]);
+const user = ref({});
 
-onMounted(() => {
+
+const addFav = async (placeId) => {
+    if (userStore.loginTF === false) {
+        alert("찜 기능을 사용할려면 로그인 해주세요")
+        return;
+    }
+
+    if (userStore.favCount >=4) {
+        alert("찜 등록은 4개까지만 가능합니다.")
+        return;
+    }
+
+    const URL = import.meta.env.VITE_APP_API_FAVORITES_URL + `/${user.value.userId}/${placeId}`
+
+    try {
+        const response = await axios.post(URL)
+        alert("찜 등록에 성공했습니다.")
+        userStore.addFavTF = true;
+    }
+    catch (error) {
+        alert(error.response.data.message);
+    }
+
+}
+
+onMounted(async () => {
     const lon = 127.0396029
     const lat = 37.501286
     const URL = import.meta.env.VITE_APP_API_PLACE_URL + "/find/" + lat + "/" + lon;
   
     axios.get(URL).then((res) =>
         lecList.value = res.data).catch((error) => console.log(error));
+
+    user.value = JSON.parse(sessionStorage.getItem("user"));
 })
 
 
@@ -43,5 +74,8 @@ a{
     text-decoration: none;
     /* color: black; */
     font-family: 'Pretendard-Regular';
+}
+.badge{
+    font-size: large;
 }
 </style>

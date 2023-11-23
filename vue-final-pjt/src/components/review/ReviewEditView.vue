@@ -1,19 +1,12 @@
 
 <template>
-    <div>
-        <h2> 리뷰 수정 여기서 할게요</h2>
-        <form class="col">
-            <div class="row-auto">
-                <label for="reviewContent">리뷰수정칸</label>
-                <input type="text" v-model="content" class="form-control" id="reviewContent"
-                    placeholder="리뷰수정칸">
-            </div>
-            <div class="row-auto">
-                <button type="submit" class="btn btn-primary mb-3" @click.stop.prevent=reviewEdit
-                    @keyup.enter.stop.prevent=reviewEdit>로그인</button>
-            </div>
-
-        </form>
+    <div class="form-container col-9">
+        <label for="reviewContent" class="form-label mb-3">리뷰 수정</label>
+        <textarea v-model="content" class="form-control mb-3" id="reviewContent" rows="3" placeholder="내용을 입력하세요."></textarea>
+        <div class="d-flex align-items-end flex-column">
+            <button type="submit" class="btn btn-primary mb-3" @click.stop.prevent=reviewEdit
+                    @keyup.enter.stop.prevent=reviewEdite>수정</button> 
+        </div>
     </div>
 </template>
 
@@ -35,10 +28,10 @@ const reviewEdit = async () => {
     try {
         const response = await axios.put(URL, content.value
         );
-        alert("성공!")
+        alert("수정이 완료되었습니다.")
         
     } catch(error) {
-        alert("썸띵 에러");
+        alert("문제가 발생했습니다. 관리자에게 문의하세요.");
     }
     
     router.replace(`/placeDetail/${placeStore.reviewPlaceId}`)
@@ -55,4 +48,13 @@ onMounted(() => {
 
 </script>
 
-<style scoped></style>
+<style scoped>
+.form-container{
+    font-family: 'Pretendard-Regular';
+}
+
+.form-label{
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+</style>
