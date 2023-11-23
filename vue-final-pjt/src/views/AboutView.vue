@@ -1,13 +1,13 @@
 <template>
-    <div class="container px-4 px-lg-5">
-    <div class="row imageContainer">
+    <div class="container">
+    <div class="row d-flex">
         <div class="col images hover-effect" @click="openNewWindow(`yhC-key`)">
-            <img src="../assets/yhC.png" width="300" class="hover-effect"/>
+            <img src="../assets/yhC.png" width="280" class="hover-effect"/>
            
         </div>
 
         <div class="col images" @click="openNewWindow(`YuKyung-Chung`)">
-            <img src="../assets/ykC.png" width="300" class="hover-effect"/>
+            <img src="../assets/ykC.png" width="280" class="hover-effect"/>
         </div>
 
     </div>
@@ -25,14 +25,12 @@ const openNewWindow = (id) => {
 </script>
 
 <style scoped>
-.imageContainer {
-    display: flex;
-}
+
 .images {
     display : flex;
     justify-content: center;
     align-items: center;
-    height: 75.7vh;
+    height: 77.5vh;
 
 
 }
