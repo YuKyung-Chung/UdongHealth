@@ -56,6 +56,7 @@ onMounted(() => {
 
 <style  scoped>
 #mainNav{
+    width: 100%;
     background-color: #67BA6A;
     background: linear-gradient(to center, #A6D7A7 10%, #449F47 50%);
     z-index : 1;

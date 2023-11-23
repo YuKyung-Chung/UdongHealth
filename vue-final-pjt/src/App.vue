@@ -101,7 +101,12 @@ onMounted(() => {
   min-height: 100%;
   padding-bottom: 0;
 }
-
+header {
+  width: 100%;
+}
+.row {
+  --bs-gutter-x: 0 !important
+}
 .rowSection {
   margin-top: 20vh;
 }
