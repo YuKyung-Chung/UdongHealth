@@ -42,5 +42,14 @@
 # 🌞 2023 11-22
 ### 🔜 오늘 할 일
 - 정유경: CSS 예쁘게 꾸미기
+- 조용환: Search 기능 버그 고치기, review 버그 고치기
+### ✔ 오늘 한 일
+
+- 조용환: review 버그 고치기, Search 기능 버그 고치기, Search 방식 router -> routerview 고치기
+### 어려웠던 점
+
+- 조용환: SearchView로 통합되었던 것을 component이용해서 SearchFit 과 SearchPlace로 다시 나누는 것이 어려웠다. pinia의 usePlaceStore이용해서 해결했다.
+          다른 컴포넌트 요소 조작을 하는 것이 어려웠다. 한 페이지내 3개 컴포넌트가 독립적으로 작동해서 각각의 파트를 제어하기는 쉽지만, 따로는 어려웠다. 
 # 🌞 2023 11-23
+
 # 🌞 2023 11-24
