@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <h3 class="mb-4">현재 위치에서 가까운 추천 무료 헬스장</h3>
     <div class="mapContainer">
       <div id="map"></div>
       <div>
@@ -129,9 +130,14 @@ const displayMarker = function (markerPositions) {
 </script>
 
 <style scoped>
+h3{
+  font-family: 'Pretendard-Regular';
+  font-weight: 600;
+}
+
 #map {
   width: 40%;
-    height: 50vh;
+  height: 50vh;
 }
 
 .container {
