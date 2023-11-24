@@ -58,6 +58,7 @@
 
 ### ✔ 오늘 한 일
 - 조용환 : 각종 버그 고치기, SignIn, SignUp Refactoring, bootstrap 활용 CSS 수정, REVIEW 관련 버그 고치기
+- 정유경 : bootstrap 활용하여 review 등록, 수정, 조회, 거리순 추천 리스트 css 수정, 현재 위치 기준 가까운 순으로 거리 계산하여 보여주기
 
 ### 🔥 어려웠던 점
 
