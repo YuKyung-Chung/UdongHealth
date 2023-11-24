@@ -1,15 +1,16 @@
 <template>
     <div class="list-container mx-5">
         <ol class="list-group list-group-numbered  px-2 py-2">
-            <li class="list-group-item d-flex justify-content-between align-items-start p-4" v-for="lec in lecList" :key=lec.placeId>
-              <div class="ms-2 me-auto" >
-                <RouterLink :to="{ path: `/placeDetail/${lec.placeId}`}" > {{lec.공원명}} </RouterLink>
-                <br>
-                {{ lec.설치주소 }}
-                <br>
-                {{lec.distance}} km
-              </div>
-              <span class="badge rounded-pill" @click.stop.prevent=addFav(lec.placeId)>⭐</span>
+            <li class="list-group-item d-flex justify-content-between align-items-start p-4" v-for="lec in lecList"
+                :key=lec.placeId>
+                <div class="ms-2 me-auto">
+                    <RouterLink :to="{ path: `/placeDetail/${lec.placeId}` }"> {{ lec.공원명 }} </RouterLink>
+                    <br>
+                    {{ lec.설치주소 }}
+                    <br>
+                    {{ lec.distance }} km
+                </div>
+                <span class="badge rounded-pill" @click.stop.prevent=addFav(lec.placeId)>⭐</span>
             </li>
         </ol>
     </div>
@@ -23,7 +24,6 @@ import { useUserStore } from '@/stores/user';
 
 const userStore = useUserStore();
 const lecList = ref([]);
-const user = ref({});
 
 
 const addFav = async (placeId) => {
@@ -32,12 +32,12 @@ const addFav = async (placeId) => {
         return;
     }
 
-    if (userStore.favCount >=4) {
+    if (userStore.favCount >= 4) {
         alert("찜 등록은 4개까지만 가능합니다.")
         return;
     }
 
-    const URL = import.meta.env.VITE_APP_API_FAVORITES_URL + `/${user.value.userId}/${placeId}`
+    const URL = import.meta.env.VITE_APP_API_FAVORITES_URL + `/${userStore.user.value.userId}/${placeId}`
 
     try {
         const response = await axios.post(URL)
@@ -54,11 +54,11 @@ onMounted(async () => {
     const lon = 127.0396029
     const lat = 37.501286
     const URL = import.meta.env.VITE_APP_API_PLACE_URL + "/find/" + lat + "/" + lon;
-  
+
     axios.get(URL).then((res) =>
         lecList.value = res.data).catch((error) => console.log(error));
 
-    user.value = JSON.parse(sessionStorage.getItem("user"));
+    userStore.user.value = JSON.parse(sessionStorage.getItem("user"));
 })
 
 
@@ -66,16 +66,20 @@ onMounted(async () => {
 </script>
 
 <style scoped>
-.list-container{
+.list-container {
     font-family: 'Pretendard-Regular';
 }
 
-a{
+a {
     text-decoration: none;
     /* color: black; */
     font-family: 'Pretendard-Regular';
 }
-.badge{
+
+.badge {
     font-size: large;
 }
-</style>
+
+.badge:hover {
+    cursor: pointer;
+}</style>

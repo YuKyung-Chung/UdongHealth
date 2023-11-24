@@ -1,30 +1,30 @@
 <template>
-    <div>
-        <h4>{{ user.name }}님 반갑습니다.</h4>
-        <!-- <h4>{{ user.email }}</h4> -->
+    <div class="loginCard">
+        <h4 class="hiUser">🌱{{ user.name }}님 반갑습니다.</h4>
+        <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 오늘은 어디로 운동을 가실 건가요?</p>
     </div>
     <br>
-    <div>
-        <button class="btn btn-primary mb-3" @click.stop.prevent=logout>로그아웃</button>
+    <div class="d-flex justify-content-end">
+        <button class="btn btn-secondary mb-3" @click.stop.prevent=logout>로그아웃</button>
     </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue';
 import router from '../../router';
-import {useUserStore} from '@/stores/user'
+import { useUserStore } from '@/stores/user'
 
 
 const store = useUserStore();
 const user = ref({});
 
 const logout = () => {
-    
+
     store.loginTF = false;
     sessionStorage.removeItem("user")
     alert("로그아웃 되었습니다")
     router.replace("/")
-    
+
 }
 
 
@@ -37,4 +37,12 @@ onMounted(() => {
 
 </script>
 
-<style scoped></style>
+<style scoped>
+.loginCard {
+    font-family: 'Pretendard-Regular';
+}
+
+.hiUser {
+    font-weight: 700;
+}
+</style>

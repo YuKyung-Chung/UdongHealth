@@ -133,6 +133,9 @@ const signupId = async () => {
     margin-top: 5px;
 }
 
+.nav-item:hover {
+    cursor : pointer;
+}
 a {
     text-decoration-line: none;
     color: green;

@@ -22,8 +22,8 @@
                     <RouterLink :to="`/placeDetail/${fav.placeId}`">
                         <h5>{{ fav.addressGu }} {{ fav.addressDong }} {{ fav.공원명 }}</h5>
                     </RouterLink>
-                    <div>
-                        <p> {{ fav.설치운동기구종류 }}</p>
+                    <p> {{ fav.설치운동기구종류 }}</p>
+                    <div class="d-flex justify-content-end">
                         <button class="btn btn-danger" @click="deleteFav(fav.placeId)">삭제</button>
                     </div>
                 </div>
@@ -66,12 +66,14 @@ watch([() => userStore.loginTF, () => userStore.addFavTF], async () => {
             const response = await axios.get(URL);
             favList.value = response.data;
             userStore.favCount = favList.value.length;
-            favList.value.forEach((item) => {
-                const arr = item.설치운동기구종류.split(",");
-                if (arr.length >= 3) {
-                    item.설치운동기구종류 = `${arr[0]}, ${arr[1]}, ${arr[2]}, 등...`
-                }
-            })
+            if (userStore.favCount > 0) {
+                favList.value.forEach((item) => {
+                    const arr = item.설치운동기구종류.split(",");
+                    if (arr.length >= 3) {
+                        item.설치운동기구종류 = `${arr[0]}, ${arr[1]}, ${arr[2]}, 등...`
+                    }
+                })
+            }
         } catch (error) {
             console.error('Error fetching data:', error);
         }
@@ -124,8 +126,9 @@ a {
 }
 
 .card:hover {
-    cursor : pointer;
+    cursor: pointer;
 }
+
 .favListClass {
     font-family: 'Pretendard-Regular';
 }

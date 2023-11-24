@@ -18,7 +18,7 @@
               
               <RouterView />
             </section>
-            <aside v-if="$route.path !== '/kind' && $route.path !== '/about'" class="col-3 ps-3 pe-3">
+            <aside v-show="$route.path !== '/kind' && $route.path !== '/about'" class="col-3 ps-3 pe-3">
               <div v-if="$route.path !== '/signup'">
                 <div v-if="store.loginTF === false">
                   <LoginForm />
