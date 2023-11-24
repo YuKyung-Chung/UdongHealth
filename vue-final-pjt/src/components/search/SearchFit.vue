@@ -15,6 +15,7 @@ import axios from 'axios';
 
 const placeStore = usePlaceStore();
 
+//이미지 클릭시 이미지에 해당하는 키워드로 api 통신 후 결과값 SearchView를 통해 출력
 const handleImageClick = async(index) => {
     placeStore.fitSearchTF = true;
     const URL = import.meta.env.VITE_APP_API_PLACE_URL + `/search/${images[index].alt}`

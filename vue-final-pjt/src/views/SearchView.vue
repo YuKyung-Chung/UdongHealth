@@ -71,13 +71,14 @@ const placeStore = usePlaceStore();
 const router = useRouter();
 const user = ref({});
 
+//상세주소 클릭 시 goDetail로 보내서 처리
 const goDetail = (placeId) => {
     router.push({ name: 'placeDetail', params: { placeId: placeId } })
 }
 
 
 
-
+//찜 기능 유효성 검사
 const addFav = async (placeId) => {
     if (userStore.loginTF === false) {
         alert("찜 기능을 사용할려면 로그인 해주세요")
@@ -103,7 +104,7 @@ const addFav = async (placeId) => {
 
 }
 
-
+//초기 렌더링시 해당 되는 장소가 20개이상이면 20개로 고정, 아니면 그대로
 onMounted(async () => {
     router.push("/search/place")
     await placeStore.getPlaces();

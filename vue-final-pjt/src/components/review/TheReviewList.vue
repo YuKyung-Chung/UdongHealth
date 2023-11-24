@@ -37,6 +37,7 @@ const reviews = ref([]);
 const userStore = useUserStore();
 const placeStore = usePlaceStore();
 
+//review 추가, 유효성 검사
 const goReviewEdit = (review) => {
     if (userStore.loginTF === false) {
         alert("로그인을 먼저 해주세요")
@@ -52,6 +53,7 @@ const goReviewEdit = (review) => {
     }
 }   
 
+//리뷰삭제, 해당 아이디만 삭제할 수 있도록 미리 체크 후 api 통신
 const goReviewDelete = async (review) => {
     if (review.userId === JSON.parse(sessionStorage.getItem("user")).userId) {
         try {
@@ -69,11 +71,13 @@ const goReviewDelete = async (review) => {
     }
 }
 
+//placeDetail 접근 시 해당파일 리뷰 가져오기
 onMounted(async () => {
     let URL = import.meta.env.VITE_APP_API_REVIEW_URL + "/" + route.params.placeId
     const response = await axios.get(URL);
     reviews.value = response.data;
 })
+//placeDetail/:id -> placeDetail/:id로 이동할 때 렌더링안되는 문제 해결용
 watch(()=> route.params.placeId, async(newParam, oldParam) => {
     let URL = import.meta.env.VITE_APP_API_REVIEW_URL + "/" + route.params.placeId
     const response = await axios.get(URL);
