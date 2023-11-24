@@ -1,5 +1,53 @@
-    # 우리 동네 무료 헬스장 🏋️‍♀️🏋️‍♂️
-팀장: 조용환(FE), 팀원: 정유경(BE)
+# 🏋️‍♂️ 우리 동네 무료 헬스장 🏋️‍♀️
+
+### 0. 팀원 소개
+<table align="center">
+    <tr align="center">
+        <td style="min-width: 250px;">
+            <a href="https://github.com/yhc-key">
+              <img src="https://avatars.githubusercontent.com/u/139313175?v=4" width="100">
+              <br />
+              <b>조용환(팀장)</b>
+            </a> 
+        </td>
+        <td style="min-width: 250px;">
+            <a href="https://github.com/yukyung-chung">
+              <img src="https://avatars.githubusercontent.com/u/83561356?v=4" width="100">
+              <br />
+              <b>정유경</b>
+            </a>
+        </td>
+    </tr>
+    <tr align="left">
+        <td>
+        🥨 Front-end<br> 
+        1. Color concept, page conpcnet 정하기<br>
+	2. Vue3 composition API 기반 page 설계<br>
+	3. Kakao map API 기반 위치 정보 제공<br>
+	4. 리뷰 등록/수정/삭제 API 통신 기능 구현<br>
+	5. 로그인/로그아웃, 회원가입 component 전환<br>
+	6. 동적 라우팅 페이지 제작<br>
+	7. 반응형 웹페이지 구현<br>
+	8. SFC 스타일 활용 프론트앤드 구현<br>
+	9. SPA 방식 웹페이지 제작 <br>
+        <br/>
+        </td>
+        <td>
+        🍒 Back-end<br>
+        1. DB 모델링<br>
+	2. Spring MVC 기반 Back-end 기능<br>
+	3. 공공 데이터 API 기반 헬스장 정보 조회 기능<br>
+	4. 현재 위치 기반 가까운 장소 계산하여 제공<br>
+	5. 장소, 주소로 헬스장 검색 기능<br>
+	6. 운동 부위 별 데이터 sorting하여 검색 기능<br>
+	7. 리뷰 등록/수정/삭제 기능<br>
+	8. 즐겨찾기 추가/삭제 기능<br>
+	9. 로그인/회원가입 및 유효성 검사<br>
+	10. CSS 수정<br>
+        <br/>
+        </td>
+    </tr>
+</table>
 
 ### 1. Commit & PR Rules
 ```
